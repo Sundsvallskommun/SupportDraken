@@ -1,0 +1,10 @@
+spring:
+  datasource:
+    url: jdbc:mariadb://mariadb:3306/message-exchange
+    username: message-exchange
+    password: message-exchange
+  jpa:
+    hibernate:
+    ddl-auto: validate
+  flyway:
+    enabled: true

@@ -1,0 +1,26 @@
+spring:
+  datasource:
+    url: jdbc:mariadb://mariadb:3306/messaging_settings
+    username: messaging_settings
+    password: messaging_settings
+  jpa:
+    hibernate:
+    ddl-auto: validate
+  flyway:
+    enabled: true
+
+  security:
+    oauth2:
+      client:
+        provider:
+          employee:
+            token-uri: http://localhost:9000/token
+        registration:
+          employee:
+            client-id: ignored
+            client-secret: ignored
+integration:
+  employee:
+    url: http://localhost:8080/employee
+
+  
