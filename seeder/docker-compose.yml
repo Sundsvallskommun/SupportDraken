@@ -1,16 +1,14 @@
 services:
   db-seeder:
     image: mariadb:10.6
-    container_name: db-seeder
-    # Ingen depends_on behövs; vi väntar i skriptet tills DB svarar.
     networks:
       - dockernet
     environment:
-      MARIADB_HOST: mariadb          # alias från din huvud-compose
-      MARIADB_ROOT_PASSWORD: root    # samma som i din mariadb-tjänst
+      MARIADB_HOST: mariadb   
+      MARIADB_ROOT_PASSWORD: root 
     volumes:
-      - ./sql:/seed:ro               # seeder/sql -> /seed
-      - ./run.sh:/run.sh:ro          # vårt seeder-skript
+      - ./sql:/seed:ro            
+      - ./run.sh:/run.sh:ro      
     entrypoint: ["/bin/sh", "/run.sh"]
 
 networks:

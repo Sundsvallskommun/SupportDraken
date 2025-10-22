@@ -1,7 +1,6 @@
 services:
   message-exchange-api:
     image: ghcr.io/sundsvallskommun/api-service-message-exchange:latest
-    container_name: message-exchange-api
     ports:
       - "8083:8080" 
     environment:

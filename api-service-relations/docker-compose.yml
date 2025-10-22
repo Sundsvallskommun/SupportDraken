@@ -1,7 +1,6 @@
 services:
   relations-api:
     image: ghcr.io/sundsvallskommun/api-service-relations:latest
-    container_name: relations-api
     ports:
       - "8082:8080" 
     environment:
