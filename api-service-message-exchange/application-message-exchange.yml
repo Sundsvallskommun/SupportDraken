@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: jdbc:mariadb://mariadb:3306/message-exchange
-    username: message-exchange
-    password: message-exchange
+    url: jdbc:mariadb://mariadb:3306/message_exchange
+    username: message_exchange
+    password: message_exchange
   jpa:
     hibernate:
     ddl-auto: validate

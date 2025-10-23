@@ -6,7 +6,7 @@ PROJECT_NAME="${PROJECT_NAME:-supportdraken}"
 export COMPOSE_PROJECT_NAME="$PROJECT_NAME"
 export COMPOSE_IGNORE_ORPHANS=1   # suppress orphan warnings
 
-DELAY_SECONDS="${DELAY_SECONDS:-60}"
+DELAY_SECONDS="${DELAY_SECONDS:-180}"
 
 up_in_dir() {
   local dir="$1"

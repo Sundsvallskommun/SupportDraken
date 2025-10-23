@@ -18,6 +18,12 @@ CREATE DATABASE IF NOT EXISTS `messaging_settings` CHARACTER SET utf8mb4 COLLATE
 CREATE USER IF NOT EXISTS 'messaging_settings'@'%' IDENTIFIED BY 'messaging_settings';
 GRANT ALL PRIVILEGES ON `messaging_settings`.* TO 'messaging_settings'@'%';
 
+CREATE DATABASE IF NOT EXISTS `email_reader` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+CREATE USER IF NOT EXISTS 'email_reader'@'%' IDENTIFIED BY 'email_reader';
+GRANT ALL PRIVILEGES ON `email_reader`.* TO 'email_reader'@'%';
+
+CREATE DATABASE IF NOT EXISTS `templating` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+CREATE USER IF NOT EXISTS 'templating'@'%' IDENTIFIED BY 'templating';
+GRANT ALL PRIVILEGES ON `templating`.* TO 'templating'@'%';
 
 FLUSH PRIVILEGES;
- 

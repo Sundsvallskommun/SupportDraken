@@ -1,0 +1,10 @@
+spring:
+  datasource:
+    url: jdbc:mariadb://mariadb:3306/templating
+    username: templating
+    password: templating
+  jpa:
+    hibernate:
+    ddl-auto: validate
+  flyway:
+    enabled: true

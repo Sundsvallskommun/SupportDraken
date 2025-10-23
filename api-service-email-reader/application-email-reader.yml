@@ -1,0 +1,18 @@
+spring:
+  datasource:
+    url: jdbc:mariadb://mariadb:3306/email_reader
+    username: email_reader
+    password: email_reader
+  jpa:
+    hibernate:
+    ddl-auto: validate
+  flyway:
+    enabled: true
+integration: 
+  messaging:
+    base-url: http://localhost:8080/messaging
+    client-id: ignored
+    client-secret: ignored
+    token-uri: http://localhost:9000/token
+
+  
