@@ -39,10 +39,10 @@ _Package of all services needed to run SupportDraken. Includes scripts for start
 3. **Stop the service**
    ```bash
    Stops all docker containers.
-   ./down-all.sh
+   ./stop-all.sh
 
    Stops all docker containers and removes all volumes.(Database data will be wiped)
-   ./down-all.sh -v
+   ./stop-all.sh -v
    ```
 5. **Pull new images**
    ```bash
