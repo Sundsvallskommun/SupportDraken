@@ -26,4 +26,8 @@ CREATE DATABASE IF NOT EXISTS `templating` CHARACTER SET utf8mb4 COLLATE utf8mb4
 CREATE USER IF NOT EXISTS 'templating'@'%' IDENTIFIED BY 'templating';
 GRANT ALL PRIVILEGES ON `templating`.* TO 'templating'@'%';
 
+CREATE DATABASE IF NOT EXISTS `support_management` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+CREATE USER IF NOT EXISTS 'support_management'@'%' IDENTIFIED BY 'support_management';
+GRANT ALL PRIVILEGES ON `support_management`.* TO 'support_management'@'%';
+
 FLUSH PRIVILEGES;
