@@ -1,0 +1,42 @@
+[
+  {
+    "personId": "11111111-1111-1111-1111-111111111111",
+    "givenname": "Anna",
+    "lastname": "Andersson",
+    "gender": "F",
+    "civilStatus": "Married",
+    "nrDate": "2020-01-01",
+    "classified": null,
+    "protectedNR": null,
+    "addresses": [
+      {
+        "status": "SOME_ADDRESS_STATUS",
+        "nrDate": "2024-08-01T00:00:00",
+        "address": "Gatan 1",
+        "postalCode": "11111",
+        "city": "Stockholm",
+        "country": "SE"
+      }
+    ]
+  },
+  {
+    "personId": "22222222-2222-2222-2222-222222222222",
+    "givenname": "Billy",
+    "lastname": "Banan",
+    "gender": "M",
+    "civilStatus": "Single",
+    "nrDate": "2002-02-02",
+    "classified": null,
+    "protectedNR": null,
+    "addresses": [
+      {
+        "status": "SOME_ADDRESS_STATUS",
+        "nrDate": "2023-03-10T00:00:00",
+        "address": "Vägen 2",
+        "postalCode": "2281",
+        "city": "Sundsvall",
+        "country": "SE"
+      }
+    ]
+  }
+]

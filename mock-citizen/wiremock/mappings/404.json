@@ -1,0 +1,18 @@
+{
+  "priority": 1000,
+  "request": {
+    "urlPattern": ".*"
+  },
+  "response": {
+    "status": 404,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "status": 404,
+      "title": "Not Found",
+      "detail": "No matching stub found for {{request.method}} {{request.url}}"
+    },
+    "transformers": ["response-template"]
+  }
+}

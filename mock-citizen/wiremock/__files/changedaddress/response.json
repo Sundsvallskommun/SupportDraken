@@ -1,0 +1,32 @@
+[
+  {
+    "personId": "33333333-3333-3333-3333-333333333333",
+    "personNumber": "19111111-1111",
+    "classified": null,
+    "unRegCode": null,
+    "unRegDate": null,
+    "gender": "M",
+    "givenname": "Carl",
+    "lastname": "Carlsson",
+    "typeOfSchool": null,
+    "custodianFor": [],
+    "addresses": [
+      {
+        "status": "Current",
+        "nrDate": "2025-01-01T00:00:00",
+        "address": "Gatan 2",
+        "postalCode": "2281",
+        "city": "Sundsvall",
+        "country": "SE"
+      },
+      {
+        "status": "Previous",
+        "nrDate": "2020-11-11T11:11:11",
+        "address": "Gatan 1",
+        "postalCode": "2281",
+        "city": "Sundsvall",
+        "country": "SE"
+      }
+    ]
+  }
+]

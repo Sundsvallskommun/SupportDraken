@@ -1,0 +1,13 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPathPattern": "/([0-9]+)/([0-9a-fA-F-]+)/personnumber"
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "text/plain"
+    },
+    "bodyFileName": "personnumber/response.txt"
+  }
+}

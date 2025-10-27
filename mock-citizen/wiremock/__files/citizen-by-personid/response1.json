@@ -1,0 +1,48 @@
+{
+  "personId": "550e8400-e29b-41d4-a716-446655440000",
+  "givenname": "Jane",
+  "lastname": "Doe",
+  "gender": "F",
+  "civilStatus": "Single",
+  "nrDate": "2020-01-01",
+  "classified": false,
+  "protectedNR": false,
+  "addresses": [
+    {
+      "status": "Current",
+      "nrDate": "2025-01-01T12:34:56",
+      "realEstateDescription": null,
+      "co": null,
+      "address": "Gatan 2",
+      "addressArea": null,
+      "addressNumber": null,
+      "addressLetter": null,
+      "appartmentNumber": null,
+      "postalCode": "2281",
+      "city": "Sundsvall",
+      "county": null,
+      "municipality": null,
+      "country": "SE",
+      "emigrated": null,
+      "addressType": "POPULATION_REGISTRATION_ADDRESS"
+    },
+    {
+      "status": "Previous",
+      "nrDate": "2020-10-10T10:10:10",
+      "realEstateDescription": null,
+      "co": null,
+      "address": "Gatan 1",
+      "addressArea": null,
+      "addressNumber": null,
+      "addressLetter": null,
+      "appartmentNumber": null,
+      "postalCode": "2281",
+      "city": "Sundsvall",
+      "county": null,
+      "municipality": null,
+      "country": "SE",
+      "emigrated": null,
+      "addressType": "POPULATION_REGISTRATION_ADDRESS"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPattern": "/2281/06f7c0aa-bb0b-470f-90e8-c1920aff0ae2.*"
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "bodyFileName": "citizen-by-personid/response2.json"
+  }
+}

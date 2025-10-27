@@ -1,0 +1,10 @@
+services:
+  mock-citizen:
+    image: wiremock/wiremock:latest
+    ports:
+      - 9000:9000
+    volumes:
+      - ./wiremock:/home/wiremock
+    command:
+      ["--port", "9000", "--global-response-templating", "--disable-banner"]
+    restart: unless-stopped

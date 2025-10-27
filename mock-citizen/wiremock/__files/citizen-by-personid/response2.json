@@ -1,0 +1,48 @@
+{
+  "personId": "06f7c0aa-bb0b-470f-90e8-c1920aff0ae2",
+  "givenname": "John",
+  "lastname": "Doe",
+  "gender": "M",
+  "civilStatus": "Married",
+  "nrDate": "2005-05-05",
+  "classified": false,
+  "protectedNR": false,
+  "addresses": [
+    {
+      "status": "Current",
+      "nrDate": "2023-03-10T00:00:00",
+      "realEstateDescription": null,
+      "co": null,
+      "address": "Vägen 2",
+      "addressArea": null,
+      "addressNumber": null,
+      "addressLetter": null,
+      "appartmentNumber": null,
+      "postalCode": "2281",
+      "city": "Sundsvall",
+      "county": null,
+      "municipality": null,
+      "country": "SE",
+      "emigrated": null,
+      "addressType": "POPULATION_REGISTRATION_ADDRESS"
+    },
+    {
+      "status": "Previous",
+      "nrDate": "2020-01-01T00:00:00",
+      "realEstateDescription": null,
+      "co": null,
+      "address": "Gatan 1",
+      "addressArea": null,
+      "addressNumber": null,
+      "addressLetter": null,
+      "appartmentNumber": null,
+      "postalCode": "10124",
+      "city": "Stockholm",
+      "county": null,
+      "municipality": null,
+      "country": "SE",
+      "emigrated": null,
+      "addressType": "POPULATION_REGISTRATION_ADDRESS"
+    }
+  ]
+}

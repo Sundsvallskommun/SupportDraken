@@ -1,0 +1,13 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPathPattern": "/([0-9]+)/([0-9]{8}-?[0-9]{4})/guid"
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "text/plain"
+    },
+    "bodyFileName": "guid-by-pnr/response.txt"
+  }
+}
