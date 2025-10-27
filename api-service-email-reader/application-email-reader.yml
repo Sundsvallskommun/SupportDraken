@@ -10,7 +10,7 @@ spring:
     enabled: true
 integration: 
   messaging:
-    base-url: http://localhost:8080/messaging
+    base-url: http://messaging-api:8080/
     client-id: ignored
     client-secret: ignored
     token-uri: http://localhost:9000/token
