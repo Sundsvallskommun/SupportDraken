@@ -13,6 +13,6 @@ integration:
     base-url: http://messaging-api:8080/
     client-id: ignored
     client-secret: ignored
-    token-uri: http://localhost:9000/token
+    token-uri: http://wiremock:8080/token
 
   

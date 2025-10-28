@@ -1,0 +1,23 @@
+spring:
+  datasource:
+    url: jdbc:mariadb://mariadb:3306/oep_integrator
+    username: oep_integrator
+    password: oep_integrator
+  jpa:
+    hibernate:
+    ddl-auto: validate
+  flyway:
+    enabled: true
+  security:
+    oauth2:
+      client:
+        registration:
+          party:
+            client-id: ignored
+            client-secret: ignored
+        provider:
+          party:
+            token-uri: http://wiremock:8080/token
+integration:
+  party:
+    url: http://party-api:8080/

@@ -14,13 +14,13 @@ spring:
       client:
         provider:
           employee:
-            token-uri: http://localhost:9000/token
+            token-uri: http://wiremock:8080/token
         registration:
           employee:
             client-id: ignored
             client-secret: ignored
 integration:
   employee:
-    url: http://localhost:8080/employee
+    url: http://employee-api:8080/
 
   

@@ -1,17 +1,16 @@
 services:
-  messaging-settings-api:
-    image: ghcr.io/sundsvallskommun/api-service-messaging-settings:latest
+  party-api:
+    image: ghcr.io/sundsvallskommun/api-service-party:latest
     ports:
-      - "8084:8080" 
+      - "8089:8080" 
     environment:
       SPRING_CONFIG_ADDITIONAL_LOCATION: file:/app/application-default.yml
     volumes:
-      - ./application-messaging-settings.yml:/app/application-default.yml
+      - ./application-party.yml:/app/application-default.yml
     restart: unless-stopped
-    networks: 
+    networks:
       - dockernet
 
 networks:
   dockernet:
     external: true 
-  
