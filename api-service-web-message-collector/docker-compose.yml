@@ -1,0 +1,16 @@
+services:
+  web-message-collector-api:
+    image: ghcr.io/sundsvallskommun/api-service-web-message-collector:latest
+    ports:
+      - "8092:8080" 
+    environment:
+      SPRING_CONFIG_ADDITIONAL_LOCATION: file:/app/application-default.yml
+    volumes:
+      - ./application-web-message-collector.yml:/app/application-default.yml
+    restart: unless-stopped
+    networks:
+      - dockernet
+
+networks:
+  dockernet:
+    external: true 

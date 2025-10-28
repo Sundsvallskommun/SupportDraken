@@ -1,17 +1,16 @@
 services:
-  messaging-settings-api:
-    image: ghcr.io/sundsvallskommun/api-service-messaging-settings:latest
+  oep-integrator-api:
+    image: ghcr.io/sundsvallskommun/api-service-oep-integrator:latest
     ports:
-      - "8084:8080" 
+      - "8094:8080" 
     environment:
       SPRING_CONFIG_ADDITIONAL_LOCATION: file:/app/application-default.yml
     volumes:
-      - ./application-messaging-settings.yml:/app/application-default.yml
+      - ./application-oep-integrator.yml:/app/application-default.yml
     restart: unless-stopped
-    networks: 
+    networks:
       - dockernet
 
 networks:
   dockernet:
     external: true 
-  

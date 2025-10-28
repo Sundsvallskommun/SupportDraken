@@ -8,7 +8,10 @@ pull_in_dir() {
   local file="$dir/$COMPOSE_FILE_NAME"
 
   if [[ -f "$file" ]]; then
-    ( cd "$dir" && docker compose -f "$COMPOSE_FILE_NAME" pull )
+    echo "Pulling images in $dir"
+    pushd "$dir" > /dev/null
+    docker compose -f "$COMPOSE_FILE_NAME" pull
+    popd > /dev/null
   fi
 }
 

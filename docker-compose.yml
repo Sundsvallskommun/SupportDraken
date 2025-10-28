@@ -16,11 +16,13 @@ services:
     volumes:
       - mariadb-data:/var/lib/mysql
       - ./db-init.sql:/docker-entrypoint-initdb.d/01-init.sql:ro
+    ports:
+      - "3306:3306"
     restart: unless-stopped
     networks:
       dockernet:
         aliases:
-          - mariadb 
+          - mariadb
 
 volumes:
   mariadb-data:
