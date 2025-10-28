@@ -74,9 +74,9 @@ integration:
   accessmapper:
     url: http://accessmapper-api:8080/
   emailreader:
-    url: http://emailreader-api:8080/
+    url: http://wiremock:8080/emailreader
   employee:
-    url: http://employee-api:8080/
+    url: http://wiremock:8080/employee
   eventlog:
     url: http://eventlog-api:8080/
   messaging:
@@ -88,9 +88,9 @@ integration:
   notes:
     url: http://notes-api:8080/
   web-message-collector:
-    url: http://messaging-api:8080/
+    url: http://wiremock:8080/webmessagecollector
   citizen:
-    url: http://citizen-api:8080/
+    url: http://wiremock:8080/citizen
   relation:
     url: http://relations-api:8080/
 

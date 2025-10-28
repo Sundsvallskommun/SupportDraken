@@ -21,17 +21,17 @@ config:
     client-id: ignored
     client-secret: ignored
   web-message-collector:
-    base-url: http://web-message-collector-api:8080/
+    base-url: http://wiremock:8080/webmessagecollector
     token-url: http://wiremock:8080/token
     client-id: ignored
     client-secret: ignored
   email-reader:
-    base-url: http://email-reader-api:8080/
+    base-url: http://wiremock:8080/emailreader
     token-url: http://wiremock:8080/token
     client-id: ignored
     client-secret: ignored
   employee:
-    base-url: http://employee-api:8080/
+    base-url: http://wiremock:8080/employee
     token-url: http://wiremock:8080/token
     client-id: ignored
     client-secret: ignored

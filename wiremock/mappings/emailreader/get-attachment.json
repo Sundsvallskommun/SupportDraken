@@ -1,0 +1,14 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPathPattern": "/emailreader/[^/]+/email/attachments/[^/]+$"
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/octet-stream",
+      "Content-Disposition": "attachment; filename=\"Test_image.jpg\""
+    },
+    "bodyFileName": "emailreader/Test_image.jpg"
+  }
+}

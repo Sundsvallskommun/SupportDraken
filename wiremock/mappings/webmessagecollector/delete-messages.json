@@ -1,0 +1,9 @@
+{
+  "request": {
+    "method": "DELETE",
+    "urlPathPattern": "/webmessagecollector/[^/]+/messages"
+  },
+  "response": {
+    "status": 200
+  }
+}
