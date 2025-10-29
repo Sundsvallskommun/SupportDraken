@@ -42,7 +42,7 @@ integration:
     client-id: ignored
     client-secret: ignored
   oep-integrator:
-    base-url: http://wiremock:8080/oep-integrator/
+    base-url: http://wiremock:8080/oepintegrator/
     token-url: http://wiremock:8080/token
     client-id: ignored
     client-secret: ignored
@@ -64,7 +64,7 @@ integration:
     client-id: ignored
     client-secret: ignored
   citizen:
-    base-url: http://citizen-api:8080/
+    base-url: http://wiremock:8080/citizen
     token-url: http://wiremock:8080/token
     client-id: ignored
     client-secret: ignored

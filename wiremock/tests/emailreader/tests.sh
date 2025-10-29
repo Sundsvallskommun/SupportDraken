@@ -1,8 +1,13 @@
 #!/usr/bin/env bash
 set -e
 
-BASE_URL="http://localhost:9000/webmessagecollector"
+SERVICE="emailreader"
+BASE_URL="http://localhost:9000/$SERVICE"
 MUNICIPALITY_ID="2281"
+
+NAMESPACE="NS1"
+ATTACHMENT_ID="attachmentId"
+EMAIL_ID="emailId"
 
 test_endpoint() {
   local method="$1"
@@ -34,11 +39,9 @@ test_endpoint() {
   echo
 } 
 
-### Get messages for familyId "123" and instance "internal"
-test_endpoint GET    "$BASE_URL/$MUNICIPALITY_ID/messages/123/internal"
-### Delete all messages with ID in given list.
-test_endpoint DELETE "$BASE_URL/$MUNICIPALITY_ID/messages" '[1,2,3]'
+### Get emails for a namespace
+test_endpoint GET    "$BASE_URL/$MUNICIPALITY_ID/email/$NAMESPACE"
 ### Fetch a specific attachment
-test_endpoint GET    "$BASE_URL/$MUNICIPALITY_ID/messages/attachments/attachmentId"
-### Delete a specific attachment
-test_endpoint DELETE "$BASE_URL/$MUNICIPALITY_ID/messages/attachments/attachmentId"
+test_endpoint GET "$BASE_URL/$MUNICIPALITY_ID/email/attachments/$ATTACHMENT_ID"
+### Delete a specific email
+test_endpoint DELETE "$BASE_URL/$MUNICIPALITY_ID/email/$EMAIL_ID"

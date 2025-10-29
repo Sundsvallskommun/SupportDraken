@@ -60,11 +60,11 @@ cache:
     maximum-execution-time: PT10M
 integration: 
   case-management:
-    base-url: http://case-management-api:8080/
+    base-url: http://wiremock:8080/casemanagement
   eventlog:
     base-url: http://eventlog-api:8008/
   oep-integrator:
-    base-url: http://oep-integrator-api:8080/
+    base-url: http://wiremock-api:8080/oepintegrator
   party:
     base-url: http://party-api:8080/
   support-management:

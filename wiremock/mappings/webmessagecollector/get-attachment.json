@@ -9,6 +9,6 @@
       "Content-Type": "application/octet-stream",
       "Content-Disposition": "attachment; filename=\"attachment.bin\""
     },
-    "bodyFileName": "webmessagecollector/Test_image.jpg"
+    "bodyFileName": "common/Test_image.jpg"
   }
 }

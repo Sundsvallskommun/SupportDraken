@@ -4,9 +4,9 @@ spring:
       client:
         provider:
           citizen:
-            token-uri: http://wiremock:8080/
+            token-uri: http://wiremock:8080/token
           legalentity:
-            token-uri: http://wiremock:8080/
+            token-uri: http://wiremock:8080/token
         registration:
           citizen:
             client-id: the-client-id
@@ -16,6 +16,6 @@ spring:
             client-secret: the-client-secret
 integration:
   citizen:
-    url: http://citizen-api:8080/
+    url: http://wiremock:8080/citizen
   legalentity:
-    url: http://legalentity-api:8080/
+    url: http://wiremock:8080/legalentity

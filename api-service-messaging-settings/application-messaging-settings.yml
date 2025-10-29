@@ -21,6 +21,6 @@ spring:
             client-secret: ignored
 integration:
   employee:
-    url: http://employee-api:8080/
+    url: http://wiremock:8080/employee
 
   
