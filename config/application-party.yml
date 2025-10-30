@@ -1,0 +1,21 @@
+spring:
+  security:
+    oauth2:
+      client:
+        provider:
+          citizen:
+            token-uri: http://wiremock:8080/token
+          legalentity:
+            token-uri: http://wiremock:8080/token
+        registration:
+          citizen:
+            client-id: the-client-id
+            client-secret: the-client-secret
+          legalentity:
+            client-id: the-client-id
+            client-secret: the-client-secret
+integration:
+  citizen:
+    url: http://wiremock:8080/citizen
+  legalentity:
+    url: http://wiremock:8080/legalentity

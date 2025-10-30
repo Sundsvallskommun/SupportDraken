@@ -1,0 +1,31 @@
+ARG NODE_VERSION=20.9.0-alpine
+
+FROM node:${NODE_VERSION} AS deps
+RUN apk add --no-cache libc6-compat git
+WORKDIR /app
+COPY package.json yarn.lock ./
+RUN yarn install --frozen-lockfile --production=false
+
+FROM node:${NODE_VERSION} AS builder
+WORKDIR /app
+COPY --from=deps /app/node_modules ./node_modules
+COPY . .
+ENV NEXT_TELEMETRY_DISABLED=1
+# kör build med din .env.kc
+RUN yarn dotenv -e .env.kc -- next build
+
+FROM node:${NODE_VERSION} AS runner
+WORKDIR /app
+ENV NODE_ENV=production
+ENV NEXT_TELEMETRY_DISABLED=1
+
+RUN addgroup --system nodejs && adduser --system nextjs
+
+COPY --from=builder /app/public ./public
+COPY --from=builder /app/package.json ./package.json
+COPY --from=deps    /app/node_modules ./node_modules
+
+USER nextjs
+EXPOSE 3000
+ENV PORT=3000
+CMD ["yarn", "start"]

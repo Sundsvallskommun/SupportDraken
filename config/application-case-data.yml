@@ -1,0 +1,78 @@
+spring:
+  datasource:
+    url: jdbc:mariadb://mariadb:3306/case_data
+    username: case_data
+    password: case_data
+  jpa:
+    hibernate:
+    ddl-auto: validate
+  flyway:
+    enabled: true
+
+config:
+  parkingpermit:
+    base-url: http://parking-permit-api:8080/
+    token-url: http://wiremock:8080/token
+    client-id: ignored
+    client-secret: ignored
+  landandexploitation:
+    base-url: http://land-and-exploitation-api:8080/
+    token-url: http://wiremock:8080/token
+    client-id: ignored
+    client-secret: ignored
+  web-message-collector:
+    base-url: http://wiremock:8080/webmessagecollector
+    token-url: http://wiremock:8080/token
+    client-id: ignored
+    client-secret: ignored
+  email-reader:
+    base-url: http://wiremock:8080/emailreader
+    token-url: http://wiremock:8080/token
+    client-id: ignored
+    client-secret: ignored
+  employee:
+    base-url: http://wiremock:8080/employee
+    token-url: http://wiremock:8080/token
+    client-id: ignored
+    client-secret: ignored
+  message-exchange:
+    base-url: http://message-exchange-api:8080/
+    token-url: http://wiremock:8080/token
+    client-id: ignored
+    client-secret: ignored
+  messaging:
+    base-url: http://messaging-api:8080/
+    token-url: http://wiremock:8080/token
+    client-id: ignored
+    client-secret: ignored
+  messaging-settings:
+    base-url: http://messaging-settings-api:8080/
+    token-url: http://wiremock:8080/token
+    client-id: ignored
+    client-secret: ignored
+  relation:
+    base-url: http://relations-api:8080/
+    token-url: http://wiremock:8080/token
+    client-id: ignored
+    client-secret: ignored
+
+integration:
+  parkingpermit:
+    supported-namespaces:
+      - MY_NAMESPACE
+      - SBK_PARKING_PERMIT
+  landandexploitation:
+    supported-namespaces:
+      - SBK_MEX
+
+scheduler:
+  message-collector:
+    enabled: false
+  emailreader:
+    enabled: false
+  suspension:
+    enabled: false
+  notification:
+    enabled: false
+  messageexchange:
+    enabled: false

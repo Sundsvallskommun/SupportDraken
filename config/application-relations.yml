@@ -1,0 +1,10 @@
+spring:
+  datasource:
+    url: jdbc:mariadb://mariadb:3306/relations
+    username: relations
+    password: relations
+  jpa:
+    hibernate:
+    ddl-auto: validate
+  flyway:
+    enabled: true
