@@ -1,0 +1,14 @@
+{
+    "priority": 10,
+    "request": {
+        "method": "GET",
+        "urlPathPattern": "/api/v3/citizen/[^/]+/[0-9a-fA-F-]{36}/personnumber$"
+    },
+    "response": {
+        "status": 200,
+        "headers": {
+            "Content-Type": "text/plain"
+        },
+        "bodyFileName": "citizen/pn-6.txt"
+    }
+}

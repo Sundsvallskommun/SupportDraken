@@ -1,0 +1,13 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPath": "/api/v3/citizen/2281/7a1f2b3c-8d4e-4f11-9a2b-0c1d2e3f4a5b/personnumber"
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "text/plain"
+    },
+    "bodyFileName": "citizen/pn-1.txt"
+  }
+}

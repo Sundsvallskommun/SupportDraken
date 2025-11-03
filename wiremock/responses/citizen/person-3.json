@@ -1,0 +1,21 @@
+{
+  "personId": "9c3f4d5e-af6a-4b33-7c4d-2e3f4a5b6c7d",
+  "givenname": "Carla",
+  "lastname": "Carlsson",
+  "gender": "F",
+  "civilStatus": "S",
+  "nrDate": "2020-03-03",
+  "classified": null,
+  "protectedNR": null,
+  "addresses": [
+    {
+      "status": "active",
+      "nrDate": "2020-03-03T00:00:00Z",
+      "address": "Third St 3",
+      "postalCode": "33333",
+      "city": "Sundsvall",
+      "country": "SE",
+      "addressType": "home"
+    }
+  ]
+}

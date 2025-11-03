@@ -1,0 +1,21 @@
+{
+  "personId": "cf6f7a8b-d29d-4e66-8f7a-5b6c7d8e9fac",
+  "givenname": "Zach",
+  "lastname": "Zed",
+  "gender": "M",
+  "civilStatus": "S",
+  "nrDate": "2020-06-06",
+  "classified": null,
+  "protectedNR": null,
+  "addresses": [
+    {
+      "status": "active",
+      "nrDate": "2020-06-06T00:00:00Z",
+      "address": "Sixth St 6",
+      "postalCode": "66666",
+      "city": "Sundsvall",
+      "country": "SE",
+      "addressType": "home"
+    }
+  ]
+}

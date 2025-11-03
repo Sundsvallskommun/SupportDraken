@@ -1,16 +1,24 @@
 [
   {
-    "personId": "22222222-2222-2222-2222-222222222222",
-    "personNumber": "19800101-5678",
+    "personId": "8b2f3c4d-9e5f-4a22-8b3c-1d2e3f4a5b6c",
+    "personNumber": "19700101-0002",
     "isClassified": false,
     "givenname": "Jane",
     "middlename": null,
     "lastname": "Doe",
     "accounts": [
-      { "domain": "AD", "loginname": "jadoe", "companyId": 1001, "emailAddress": "jane.doe@example.com" }
+      {
+        "domain": "AD",
+        "loginname": "jadoe",
+        "companyId": 1001,
+        "emailAddress": "jane.doe@example.com"
+      }
     ],
     "referenceNumbers": [
-      { "referenceNumber": "REF-200", "companyId": 1001 }
+      {
+        "referenceNumber": "REF-200",
+        "companyId": 1001
+      }
     ],
     "employments": [
       {
@@ -31,7 +39,7 @@
         "isMainEmployment": true,
         "isManager": false,
         "manager": {
-          "personId": "bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb",
+          "personId": "9c3f4d5e-af6a-4b33-7c4d-2e3f4a5b6c7d",
           "givenname": "Megan",
           "middlename": null,
           "lastname": "Manager",
