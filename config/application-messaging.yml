@@ -59,7 +59,7 @@ integration:
     client-id: ignored
     client-secret: ignored
   party:
-    base-url: http://party-api:8080/
+    base-url: http://api-service-party:8080/
     token-url: http://wiremock:8080/token
     client-id: ignored
     client-secret: ignored

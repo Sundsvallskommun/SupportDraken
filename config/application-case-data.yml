@@ -11,12 +11,12 @@ spring:
 
 config:
   parkingpermit:
-    base-url: http://parking-permit-api:8080/
+    base-url: http://wiremock:8080/parkingpermit
     token-url: http://wiremock:8080/token
     client-id: ignored
     client-secret: ignored
   landandexploitation:
-    base-url: http://land-and-exploitation-api:8080/
+    base-url: http://wiremock:8080/landandexploitation
     token-url: http://wiremock:8080/token
     client-id: ignored
     client-secret: ignored
@@ -36,22 +36,22 @@ config:
     client-id: ignored
     client-secret: ignored
   message-exchange:
-    base-url: http://message-exchange-api:8080/
+    base-url: http://api-service-message-exchange:8080/
     token-url: http://wiremock:8080/token
     client-id: ignored
     client-secret: ignored
   messaging:
-    base-url: http://messaging-api:8080/
+    base-url: http://api-service-messaging:8080/
     token-url: http://wiremock:8080/token
     client-id: ignored
     client-secret: ignored
   messaging-settings:
-    base-url: http://messaging-settings-api:8080/
+    base-url: http://api-service-messaging-settings:8080/
     token-url: http://wiremock:8080/token
     client-id: ignored
     client-secret: ignored
   relation:
-    base-url: http://relations-api:8080/
+    base-url: http://api-service-relations:8080/
     token-url: http://wiremock:8080/token
     client-id: ignored
     client-secret: ignored

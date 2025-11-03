@@ -1,0 +1,25 @@
+spring:
+  datasource:
+    url: jdbc:mariadb://mariadb:3306/access_mapper
+    username: access_mapper
+    password: access_mapper
+  jpa:
+    hibernate:
+    ddl-auto: validate
+  flyway:
+    enabled: true
+
+  security:
+    oauth2:
+      client:
+        provider:
+          active-directory:
+            token-uri: http://wiremock:8080/token
+        registration:
+          active-directory:
+            client-id: the-client-id
+            client-secret: the-client-secret
+
+integration:
+  active-directory:
+    url: http://wiremock:8080/activedirectory

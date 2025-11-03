@@ -72,27 +72,27 @@ spring:
 
 integration:
   accessmapper:
-    url: http://accessmapper-api:8080/
+    url: http://api-service-accessmapper:8080/
   emailreader:
     url: http://wiremock:8080/emailreader
   employee:
     url: http://wiremock:8080/employee
   eventlog:
-    url: http://eventlog-api:8080/
+    url: http://api-service-eventlog:8080/
   messaging:
-    url: http://messaging-api:8080/
+    url: http://api-service-messaging:8080/
   messageexchange:
-    url: http://messageexchange-api:8080/
+    url: http://api-service-messageexchange:8080/
   messaging-settings:
-    url: http://messaging-settings-api:8080/
+    url: http://api-service-messaging-settings:8080/
   notes:
-    url: http://notes-api:8080/
+    url: http://api-service-notes:8080/
   web-message-collector:
     url: http://wiremock:8080/webmessagecollector
   citizen:
     url: http://wiremock:8080/citizen
   relation:
-    url: http://relations-api:8080/
+    url: http://api-service-relations:8080/
 
 scheduler:
   emailreader:
