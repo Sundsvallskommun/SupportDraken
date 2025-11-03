@@ -79,8 +79,7 @@ run_test() {
     _ok=false
   fi
   if [ "$_ok" = true ] && [ -n "$_expect" ]; then
-    # Fixed-string search to handle characters like [] safely
-    echo "$_RES_BODY" | grep -F -q -- "$_expect" || _ok=false
+  echo "$_RES_BODY" | grep -Fzq --  "$_expect" || _ok=false
   fi
 
   if [ "$_ok" = true ]; then
@@ -109,7 +108,7 @@ run_status() {
     _ok=false
   fi
   if [ "$_ok" = true ] && [ -n "$_expect" ]; then
-    echo "$_RES_BODY" | grep -F -q -- "$_expect" || _ok=false
+  echo "$_RES_BODY" | grep -Fzq --  "$_expect" || _ok=false
   fi
 
   if [ "$_ok" = true ]; then

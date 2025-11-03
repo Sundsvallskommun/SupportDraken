@@ -1,0 +1,17 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPathPattern": "/estateinfo/[^/]+/estate-by-designation",
+    "queryParameters": {
+      "designation": {
+        "matches": ".*"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": { "Content-Type": "application/json" },
+    "body": "[]"
+  },
+  "priority": 4
+}
