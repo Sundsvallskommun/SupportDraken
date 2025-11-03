@@ -1,0 +1,13 @@
+[
+    {
+        "name": "Group 1",
+        "displayName": "Grupp 1",
+        "schemaClassName": "group",
+        "guid": "8c4ca7f6-97d0-4213-bfed-884176737d35",
+        "ouPath": "",
+        "description": "",
+        "domain": "personal",
+        "isLinked": false,
+        "personId": null
+    }
+]

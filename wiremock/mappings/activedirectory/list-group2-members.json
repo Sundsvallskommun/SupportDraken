@@ -1,0 +1,14 @@
+{
+    "request": {
+        "method": "GET",
+        "urlPathPattern": "/activedirectory/[^/]+/groupmembers/personal/group2"
+    },
+    "response": {
+        "status": 200,
+        "headers": {
+            "Content-Type": "application/json"
+        },
+        "bodyFileName": "activedirectory/list-group2-members-response.json"
+    },
+	"priority": 2
+}
