@@ -1,0 +1,18 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPathPattern": "/estateinfo/[^/]+/estate-by-address",
+    "queryParameters": {
+      "address": {
+        "equalTo": "Testgatan2"
+      }
+    }
+
+  },
+  "response": {
+    "status": 200,
+    "headers": { "Content-Type": "application/json" },
+    "bodyFileName": "estateinfo/estate-by-address2.json"
+  },
+  "priority": 1
+}

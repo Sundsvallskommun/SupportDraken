@@ -15,14 +15,14 @@ source "$(dirname "$0")/../_helpers.sh"
 init_report
 
 # Confirm a delivery to Open-E. (200 {})
-run_test "ConfirmDelivery" POST "$BASE_URL/$MUNICIPALITY_ID/$INSTANCE_TYPE/cases/$FLOW_INSTANCE_ID/delivery" "" '{"caseId": 123, "delivered": true}'
+run_test "ConfirmDelivery" POST "$BASE_URL/$MUNICIPALITY_ID/$INSTANCE_TYPE/cases/$FLOW_INSTANCE_ID/delivery" "" "{"caseId": 123, "delivered": true}"
 
 # Set a status on an Open-E errand. (200 {})
 run_test "SetStatus" PUT "$BASE_URL/$MUNICIPALITY_ID/$INSTANCE_TYPE/cases/$FLOW_INSTANCE_ID/status" "" '{"id": 1, "name": "Per", "principal": null}'
 
 # Get list of cases based on instance type and familyId. (200 [])
 run_test "GetCasesByFamily" GET "$BASE_URL/$MUNICIPALITY_ID/$INSTANCE_TYPE/cases/families/$FAMILY_ID" "[]"
-
+ 
 # Get a specific case. (404)
 run_status "GetCase" GET "$BASE_URL/$MUNICIPALITY_ID/$INSTANCE_TYPE/cases/$FLOW_INSTANCE_ID" 404 "Case not found"
 

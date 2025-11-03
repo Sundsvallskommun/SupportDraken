@@ -1,0 +1,17 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPathPattern": "/estateinfo/[^/]+/estate-data",
+    "queryParameters": {
+      "objectidentifier": {
+        "matches": ".*"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": { "Content-Type": "application/json" },
+    "body": "[]"
+  },
+  "priority": 4
+}

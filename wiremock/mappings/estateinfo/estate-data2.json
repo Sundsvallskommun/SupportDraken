@@ -1,0 +1,17 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPathPattern": "/estateinfo/[^/]+/estate-data",
+    "queryParameters": {
+      "objectidentifier": {
+        "equalTo": "2f3c098e-fa60-4beb-82e1-680e332b62a2"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": { "Content-Type": "application/json" },
+    "bodyFileName": "estateinfo/estate-data2.json"
+  },
+  "priority": 2
+}
