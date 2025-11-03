@@ -19,7 +19,7 @@ _Package of all services needed to run SupportDraken. Includes scripts for start
 3. **Run Service:**
     ```bash
     cd SupportDraken
-    ./start-all.sh
+    ./run.sh
     ```
 
 ## Default Test-Data
@@ -28,26 +28,14 @@ _Package of all services needed to run SupportDraken. Includes scripts for start
   If you need to add more test-data, insert scripts can be added/modified. 
   The scripts can be found at:
   ```bash
-  cd /SupportDraken/seeder/sql
+  cd /SupportDraken/config/mockdata
   ```
 ## Available Scripts
 
 1. **Start the service**
    ```bash
-   ./start-all.sh
-   ```
-3. **Stop the service**
-   ```bash
-   Stops all docker containers.
-   ./stop-all.sh
-
-   Stops all docker containers and removes all volumes.(Database data will be wiped)
-   ./stop-all.sh -v
-   ```
-5. **Pull new images**
-   ```bash
-   If new versions of the services are released and you want to ensure you are running the latest versions.
-   ./pull-all.sh
+   ./run.sh
+   ./run.sh -f (forces rebuild of local images) 
    ```
 
 ## Contributing
