@@ -1,0 +1,24 @@
+[
+    {
+    "name": "joe12doe",
+    "displayName": "John Doe",
+    "schemaClassName": "user",
+    "guid": "e4b4d711-fd75-4eb5-a048-8ae2ec4f2dd4",
+    "ouPath": "CN=joe12doe,OU=ABC1,OU=ABC2,OU=ABC3,DC=personal,DC=sundsvall,DC=se",
+    "description": "Verksamhetsutvecklare",
+    "domain": "personal",
+    "isLinked": false,
+    "personId": "7709e3d7-eee7-45d7-9cef-511381e8435h"
+  },
+  {
+    "name": "jan12doe",
+    "displayName": "Jane Doe",
+    "schemaClassName": "user",
+    "guid": "e4b4d711-fd75-4eb5-a048-8ae2ec4f2dd5",
+    "ouPath": "CN=jan12doe,OU=ABC1,OU=ABC2,OU=ABC3,DC=personal,DC=sundsvall,DC=se",
+    "description": "Kundtjänstmedarbetare",
+    "domain": "personal",
+    "isLinked": false,
+    "personId": "7709e3d7-eee7-45d7-9cef-511381e8435f" 
+  }
+]
