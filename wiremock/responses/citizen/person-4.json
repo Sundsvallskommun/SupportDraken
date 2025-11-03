@@ -1,0 +1,21 @@
+{
+  "personId": "ad4f5e6f-b07b-4c44-6d5e-3f4a5b6c7d8e",
+  "givenname": "David",
+  "lastname": "Dahl",
+  "gender": "M",
+  "civilStatus": "S",
+  "nrDate": "2020-04-04",
+  "classified": null,
+  "protectedNR": null,
+  "addresses": [
+    {
+      "status": "active",
+      "nrDate": "2020-04-04T00:00:00Z",
+      "address": "Fourth St 4",
+      "postalCode": "44444",
+      "city": "Sundsvall",
+      "country": "SE",
+      "addressType": "home"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+    "request": {
+        "method": "POST",
+        "urlPath": "/api/v3/citizen/2281/personnumbers/batch"
+    },
+    "response": {
+        "status": 200,
+        "headers": {
+            "Content-Type": "application/json"
+        },
+        "bodyFileName": "citizen/personnumbers-batch.json"
+    }
+}

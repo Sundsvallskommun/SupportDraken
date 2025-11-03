@@ -1,0 +1,13 @@
+{
+    "request": {
+        "method": "GET",
+        "urlPath": "/api/v3/citizen/2281/19700101-0001/guid"
+    },
+    "response": {
+        "status": 200,
+        "headers": {
+            "Content-Type": "text/plain"
+        },
+        "bodyFileName": "citizen/guid-1.txt"
+    }
+}

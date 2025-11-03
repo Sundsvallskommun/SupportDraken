@@ -1,0 +1,21 @@
+{
+  "personId": "7a1f2b3c-8d4e-4f11-9a2b-0c1d2e3f4a5b",
+  "givenname": "Alice",
+  "lastname": "Andersson",
+  "gender": "F",
+  "civilStatus": "S",
+  "nrDate": "2020-01-01",
+  "classified": null,
+  "protectedNR": null,
+  "addresses": [
+    {
+      "status": "active",
+      "nrDate": "2020-01-01T00:00:00Z",
+      "address": "Main St 1",
+      "postalCode": "11111",
+      "city": "Sundsvall",
+      "country": "SE",
+      "addressType": "home"
+    }
+  ]
+}
