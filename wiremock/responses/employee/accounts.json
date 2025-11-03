@@ -1,0 +1,14 @@
+[
+  {
+    "domain": "AD",
+    "loginname": "jdoe",
+    "companyId": 1001,
+    "emailAddress": "john.doe@example.com"
+  },
+  {
+    "domain": "AD",
+    "loginname": "jdoe-admin",
+    "companyId": 1002,
+    "emailAddress": "john.doe+admin@example.com"
+  }
+]

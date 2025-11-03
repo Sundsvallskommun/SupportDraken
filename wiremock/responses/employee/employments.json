@@ -1,0 +1,47 @@
+[
+  {
+    "personId": "11111111-1111-1111-1111-111111111111",
+    "personNumber": "19700101-1234",
+    "isClassified": false,
+    "givenname": "John",
+    "middlename": null,
+    "lastname": "Doe",
+    "accounts": [
+      { "domain": "AD", "loginname": "jdoe", "companyId": 1001, "emailAddress": "john.doe@example.com" }
+    ],
+    "referenceNumbers": [
+      { "referenceNumber": "REF-100", "companyId": 1001 }
+    ],
+    "employments": [
+      {
+        "companyId": 1001,
+        "startDate": "2023-01-01T00:00:00Z",
+        "endDate": null,
+        "employmentType": 1,
+        "title": "Engineer",
+        "managerCode": "M001",
+        "orgId": 10,
+        "orgName": "Engineering",
+        "topOrgId": 1,
+        "topOrgName": "HQ",
+        "benefitGroupId": null,
+        "formOfEmploymentId": "FTE",
+        "isManual": false,
+        "paTeam": null,
+        "isMainEmployment": true,
+        "isManager": false,
+        "manager": {
+          "personId": "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",
+          "givenname": "Mary",
+          "middlename": null,
+          "lastname": "Manager",
+          "loginname": "mmgr",
+          "emailAddress": "mary.manager@example.com",
+          "referenceNumber": "MGR-1"
+        },
+        "aid": null,
+        "empRowId": "row-1"
+      }
+    ]
+  }
+]

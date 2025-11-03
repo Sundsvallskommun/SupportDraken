@@ -1,0 +1,11 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPathPattern": "/api/v2/employee/[^/]+/[0-9a-fA-F-]+/personimage$"
+  },
+  "response": {
+    "status": 200,
+    "headers": { "Content-Type": "image/jpeg" },
+    "bodyFileName": "common/Test_image.jpg"
+  }
+}
