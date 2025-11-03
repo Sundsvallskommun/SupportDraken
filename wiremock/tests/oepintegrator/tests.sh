@@ -10,63 +10,29 @@ FLOW_INSTANCE_ID="flowInstanceId"
 PARTY_ID="partyId"
 FAMILY_ID="familyId"
 
-test_endpoint() {
-  local method="$1"
-  local url="$2"
-  local data="${3:-}"
+# Shared helpers
+source "$(dirname "$0")/../_helpers.sh"
+init_report
 
-  echo ">> $method $url"
+# Confirm a delivery to Open-E. (200 {})
+run_test "ConfirmDelivery" POST "$BASE_URL/$MUNICIPALITY_ID/$INSTANCE_TYPE/cases/$FLOW_INSTANCE_ID/delivery" "" '{"caseId": 123, "delivered": true}'
 
-  case "$method" in
-    GET)
-      curl -sS "$url";;
-    DELETE)
-      if [ -n "$data" ]; then
-        curl -sS -X DELETE "$url" -H "Content-Type: application/json" -d "$data"
-      else
-        curl -sS -X DELETE "$url"
-      fi;;
-    POST)
-      curl -sS -X POST "$url" -H "Content-Type: application/json" -d "${data:-{}}";;
-    PUT)
-      curl -sS -X PUT "$url" -H "Content-Type: application/json" -d "${data:-{}}";;
-    PATCH)
-      curl -sS -X PATCH "$url" -H "Content-Type: application/json" -d "${data:-{}}";;
-    *)
-      echo "Ogiltig metod: $method" >&2
-      exit 2;;
-  esac
+# Set a status on an Open-E errand. (200 {})
+run_test "SetStatus" PUT "$BASE_URL/$MUNICIPALITY_ID/$INSTANCE_TYPE/cases/$FLOW_INSTANCE_ID/status" "" '{"id": 1, "name": "Per", "principal": null}'
 
-  echo
-} 
+# Get list of cases based on instance type and familyId. (200 [])
+run_test "GetCasesByFamily" GET "$BASE_URL/$MUNICIPALITY_ID/$INSTANCE_TYPE/cases/families/$FAMILY_ID" "[]"
 
-### Confirm a delivery to Open-E.
-echo "Expects an empty response"
-test_endpoint POST    "$BASE_URL/$MUNICIPALITY_ID/$INSTANCE_TYPE/cases/$FLOW_INSTANCE_ID/delivery" '{"caseId": 123, "delivered": true}'
+# Get a specific case. (404)
+run_status "GetCase" GET "$BASE_URL/$MUNICIPALITY_ID/$INSTANCE_TYPE/cases/$FLOW_INSTANCE_ID" 404 "Case not found"
 
-### Set a status on an Open-E errand.
-echo "Expects an empty response"
-test_endpoint PUT "$BASE_URL/$MUNICIPALITY_ID/$INSTANCE_TYPE/cases/$FLOW_INSTANCE_ID/status" '{"id": 1, "name": "Per", "principal": null}'
+# Get status of a specific case. (404)
+run_status "GetCaseStatus" GET "$BASE_URL/$MUNICIPALITY_ID/$INSTANCE_TYPE/cases/$FLOW_INSTANCE_ID/status" 404 "Case status not found"
 
-### Get list of cases based on instance type and familyId.
-echo "Expects an empty array []"
-test_endpoint GET    "$BASE_URL/$MUNICIPALITY_ID/$INSTANCE_TYPE/cases/families/$FAMILY_ID"
+# Get case statuses for a given partyId. (200 [])
+run_test "GetCasesByParty" GET "$BASE_URL/$MUNICIPALITY_ID/$INSTANCE_TYPE/cases/parties/$PARTY_ID" "[]"
 
-### Get a specific case.
-echo "Expect an 404 error"
-test_endpoint GET "$BASE_URL/$MUNICIPALITY_ID/$INSTANCE_TYPE/cases/$FLOW_INSTANCE_ID"
+# Get a specific attachment (binary)
+run_test "GetCasePdf" GET "$BASE_URL/$MUNICIPALITY_ID/$INSTANCE_TYPE/cases/$FLOW_INSTANCE_ID/pdf"
 
-### Get status of a specific case.
-echo "Expect an 404 error"
-test_endpoint GET "$BASE_URL/$MUNICIPALITY_ID/$INSTANCE_TYPE/cases/$FLOW_INSTANCE_ID/status"
-
-### Get case statuses for a given partyId.
-echo "Expect an empty array []"
-test_endpoint GET "$BASE_URL/$MUNICIPALITY_ID/$INSTANCE_TYPE/cases/parties/$PARTY_ID"
-
-### Get a specific attachment.
-echo "Expect a bunch of binary data"
-test_endpoint GET "$BASE_URL/$MUNICIPALITY_ID/$INSTANCE_TYPE/cases/$FLOW_INSTANCE_ID/pdf"
-
-
-
+print_summary_and_exit
