@@ -4,32 +4,11 @@ set -e
 SERVICE="token"
 BASE_URL="http://localhost:9000/$SERVICE"
 
-test_endpoint() {
-  local method="$1"
-  local url="$2"
-  local data="${3:-}"
+# Shared helpers
+source "$(dirname "$0")/../_helpers.sh"
+init_report
 
-  echo ">> $method $url"
+# Retrieve token
+run_test "RetrieveToken" POST "$BASE_URL" "access_token"
 
-  case "$method" in
-    GET)
-      curl -sS "$url";;
-    DELETE)
-      curl -sS -X DELETE "$url";;
-    POST)
-      curl -sS -X POST "$url" -H "Content-Type: application/json" -d "${data:-{}}";;
-    PUT)
-      curl -sS -X PUT "$url" -H "Content-Type: application/json" -d "${data:-{}}";;
-    PATCH)
-      curl -sS -X PATCH "$url" -H "Content-Type: application/json" -d "${data:-{}}";;
-    *)
-      echo "Ogiltig metod: $method" >&2
-      exit 2;;
-  esac
-
-  echo
-}
-
-### Retrieve token ###
-echo "Expect a response containing an access token"
-test_endpoint POST "$BASE_URL"
+print_summary_and_exit

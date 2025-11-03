@@ -9,39 +9,17 @@ NAMESPACE="NS1"
 ATTACHMENT_ID="attachmentId"
 EMAIL_ID="emailId"
 
-test_endpoint() {
-  local method="$1"
-  local url="$2"
-  local data="${3:-}"
+# Shared helpers
+source "$(dirname "$0")/../_helpers.sh"
+init_report
 
-  echo ">> $method $url"
+# Get emails for a namespace (200 [])
+run_test "GetEmails" GET "$BASE_URL/$MUNICIPALITY_ID/email/$NAMESPACE" "[]"
 
-  case "$method" in
-    GET)
-      curl -sS "$url";;
-    DELETE)
-      if [ -n "$data" ]; then
-        curl -sS -X DELETE "$url" -H "Content-Type: application/json" -d "$data"
-      else
-        curl -sS -X DELETE "$url"
-      fi;;
-    POST)
-      curl -sS -X POST "$url" -H "Content-Type: application/json" -d "${data:-{}}";;
-    PUT)
-      curl -sS -X PUT "$url" -H "Content-Type: application/json" -d "${data:-{}}";;
-    PATCH)
-      curl -sS -X PATCH "$url" -H "Content-Type: application/json" -d "${data:-{}}";;
-    *)
-      echo "Ogiltig metod: $method" >&2
-      exit 2;;
-  esac
+# Fetch a specific attachment (200 binary)
+run_test "GetAttachment" GET "$BASE_URL/$MUNICIPALITY_ID/email/attachments/$ATTACHMENT_ID"
 
-  echo
-} 
+# Delete a specific email (200)
+run_test "DeleteEmail" DELETE "$BASE_URL/$MUNICIPALITY_ID/email/$EMAIL_ID"
 
-### Get emails for a namespace
-test_endpoint GET    "$BASE_URL/$MUNICIPALITY_ID/email/$NAMESPACE"
-### Fetch a specific attachment
-test_endpoint GET "$BASE_URL/$MUNICIPALITY_ID/email/attachments/$ATTACHMENT_ID"
-### Delete a specific email
-test_endpoint DELETE "$BASE_URL/$MUNICIPALITY_ID/email/$EMAIL_ID"
+print_summary_and_exit
