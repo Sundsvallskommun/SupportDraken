@@ -1,0 +1,25 @@
+[
+  {
+    "organizationNumber": "5590001234",
+    "name": "Example AB",
+    "form": "Aktiebolag",
+    "formShort": "AB",
+    "roles": [
+      { "description": "Ledamot", "code": "BOARD_MEMBER" },
+      { "description": "VD", "code": "CEO" }
+    ],
+    "isAuthorizedSignatory": true,
+    "isSoleTrader": false,
+    "source": "Mock"
+  },
+  {
+    "organizationNumber": "5590005678",
+    "name": "Another Example AB",
+    "form": "Aktiebolag",
+    "formShort": "AB",
+    "roles": [ { "description": "Suppleant", "code": "DEPUTY" } ],
+    "isAuthorizedSignatory": false,
+    "isSoleTrader": false,
+    "source": "Mock"
+  }
+]

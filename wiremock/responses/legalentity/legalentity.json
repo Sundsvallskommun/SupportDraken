@@ -1,0 +1,94 @@
+{
+  "legalEntityId": "123e4567-e89b-12d3-a456-426614174000",
+  "organizationNumber": "5590001234",
+  "name": "Example AB",
+  "legalForm": {
+    "legalFormId": "AB",
+    "name": "Aktiebolag"
+  },
+  "postAddress": {
+    "coAdress": "c/o Test",
+    "country": "SE",
+    "postalCode": "851 85",
+    "city": "Sundsvall",
+    "address1": "Storgatan 1",
+    "address2": "Lgh 1001"
+  },
+  "address": {
+    "addressArea": "Centrum",
+    "adressNumber": "1A",
+    "city": "Sundsvall",
+    "postalCode": "851 85",
+    "municipality": "Sundsvall",
+    "county": "Västernorrland"
+  },
+  "eMail": "info@example.com",
+  "phoneNumber": "+4660123456",
+  "countyMunicipalityCode": "2260",
+  "municipality": "Sundsvall",
+  "county": "Västernorrland",
+  "acountingPeriodStart": "2024-01-01",
+  "acountingPeriodEnded": "2024-12-31",
+  "registerDate": "2020-05-20",
+  "unRegisterDate": null,
+  "unRegisterReason": null,
+  "unRegisterReasonCode": null,
+  "liquidationOrRestructuring": [
+    {
+      "legalEntityId": "123e4567-e89b-12d3-a456-426614174000",
+      "fromDate": "2023-01-01",
+      "name": "None",
+      "code": "NONE"
+    }
+  ],
+  "form": "Aktiebolag",
+  "formShort": "AB",
+  "shareCapital": 50000.0,
+  "reportingCurrency": "SEK",
+  "totalShares": 1000,
+  "totalWorkplaces": 2,
+  "fullSignatureDescription": "Styrelsen i förening",
+  "businessDescription": "Konsultverksamhet",
+  "officers": "John Doe",
+  "annualRevenue": {
+    "annualRevenueId": "R2024",
+    "name": "> 10 MSEK"
+  },
+  "revenueYear": 2024,
+  "employeeSize": {
+    "employeeSizeId": "S10",
+    "name": "1-10"
+  },
+  "workplaces": [
+    {
+      "legalEntityId": "123e4567-e89b-12d3-a456-426614174000",
+      "cfarNumber": "987654321",
+      "name": "Huvudkontor",
+      "mainWorkplace": true,
+      "postAddress": {
+        "coAdress": null,
+        "country": "SE",
+        "postalCode": "851 85",
+        "city": "Sundsvall",
+        "address1": "Storgatan 1",
+        "address2": null
+      },
+      "address": {
+        "addressArea": "Centrum",
+        "adressNumber": "1A",
+        "city": "Sundsvall",
+        "postalCode": "851 85",
+        "municipality": "Sundsvall",
+        "county": "Västernorrland"
+      },
+      "phoneNumber": "+4660123456",
+      "employeeSize": {
+        "employeeSizeId": "S10",
+        "name": "1-10"
+      },
+      "sniCodes": [
+        { "sniId": "62.010", "name": "Dataprogrammering" }
+      ]
+    }
+  ]
+}
