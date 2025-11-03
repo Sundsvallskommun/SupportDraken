@@ -1,0 +1,12 @@
+{
+  "priority": 3,
+  "request": {
+    "method": "GET",
+    "urlPathPattern": "/api/v2/employee/[^/]+/portalpersondata/[^/]+$"
+  },
+  "response": {
+    "status": 200,
+    "headers": { "Content-Type": "application/json" },
+    "bodyFileName": "employee/portalpersondata-email.json"
+  }
+}

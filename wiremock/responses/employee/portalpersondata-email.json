@@ -1,0 +1,22 @@
+{
+  "personid": "223e4567-e89b-12d3-a456-426614174002",
+  "givenname": "Jane",
+  "lastname": "Doe",
+  "fullname": "Jane Doe",
+  "address": "Second St 2",
+  "postalCode": "54321",
+  "city": "Shelbyville",
+  "workPhone": "+46-8-765432",
+  "mobilePhone": "+46-70-7654321",
+  "extraMobilePhone": null,
+  "aboutMe": null,
+  "email": "jane.doe@example.com",
+  "mailNickname": "jadoe",
+  "company": "Example AB",
+  "companyId": 1001,
+  "orgTree": "Top/Dept",
+  "referenceNumber": "EMP-0002",
+  "isManager": true,
+  "loginName": "AD/jadoe",
+  "fullOrgTree": "Top/Dept/Team B"
+}

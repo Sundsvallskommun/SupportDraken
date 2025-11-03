@@ -1,0 +1,11 @@
+{
+  "request": {
+    "method": "DELETE",
+    "urlPathPattern": "/api/v2/employee/[^/]+/[0-9a-fA-F-]+/personimage$"
+  },
+  "response": {
+    "status": 200,
+    "headers": { "Content-Type": "application/json" },
+    "jsonBody": { "status": "deleted" }
+  }
+}

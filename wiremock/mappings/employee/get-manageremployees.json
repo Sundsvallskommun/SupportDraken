@@ -1,0 +1,11 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPathPattern": "/api/v2/employee/[^/]+/manageremployees/[0-9a-fA-F-]+$"
+  },
+  "response": {
+    "status": 200,
+    "headers": { "Content-Type": "application/json" },
+    "bodyFileName": "employee/manageremployees.json"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "priority": 5,
+  "request": {
+    "method": "GET",
+    "urlPathPattern": "/api/v2/employee/[^/]+/employed/[0-9a-fA-F-]+/accounts"
+  },
+  "response": {
+    "status": 200,
+    "headers": { "Content-Type": "application/json" },
+    "bodyFileName": "employee/accounts.json"
+  }
+}

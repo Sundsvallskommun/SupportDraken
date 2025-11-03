@@ -1,0 +1,22 @@
+{
+  "personid": "123e4567-e89b-12d3-a456-426614174001",
+  "givenname": "John",
+  "lastname": "Doe",
+  "fullname": "John Doe",
+  "address": "Main St 1",
+  "postalCode": "12345",
+  "city": "Springfield",
+  "workPhone": "+46-8-123456",
+  "mobilePhone": "+46-70-1234567",
+  "extraMobilePhone": null,
+  "aboutMe": null,
+  "email": "john.doe@example.com",
+  "mailNickname": "jdoe",
+  "company": "Example AB",
+  "companyId": 1001,
+  "orgTree": "Top/Dept",
+  "referenceNumber": "EMP-0001",
+  "isManager": false,
+  "loginName": "AD/jdoe",
+  "fullOrgTree": "Top/Dept/Team"
+}
