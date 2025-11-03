@@ -10,6 +10,25 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - /root/.m2:/root/.m2
 
+  wiremock:
+    image: wiremock/wiremock:3.6.0
+    container_name: wiremock
+    ports:
+      - "9000:8080"
+    volumes:
+      - ./wiremock/mappings:/home/wiremock/mappings:rw
+      - ./wiremock/responses:/home/wiremock/__files:rw
+    command:
+      - "--verbose"
+      - "--global-response-templating"
+    healthcheck:
+      test: ["CMD", "wget", "-q", "http://localhost:8080/__admin" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    restart: unless-stopped
+
   mariadb:
     image: mariadb:10.6
     environment:
@@ -58,6 +77,25 @@ services:
       - 8080:8080
     volumes:
       - ./config/application-eventlog.yml:/app/config/application-default.yml
+    healthcheck:
+      test: ["CMD", "wget", "-q", "http://localhost:8080/actuator/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+  api-service-access-mapper:
+    image: ghcr.io/sundsvallskommun/api-service-access-mapper:latest
+    container_name: api-service-access-mapper
+    depends_on:
+      mariadb:
+        condition: service_healthy
+    environment:
+      SPRING_CONFIG_ADDITIONAL_LOCATION: file:/app/config/application-default.yml
+    ports:
+      - 8092:8080
+    volumes:
+      - ./config/application-access-mapper.yml:/app/config/application-default.yml
     healthcheck:
       test: ["CMD", "wget", "-q", "http://localhost:8080/actuator/health"]
       interval: 10s
@@ -275,6 +313,7 @@ services:
       mariadb -h mariadb -uroot -proot support_management </config/mockdata/support_management_mockdata.sql &&
 
       echo 'All test data imported successfully.'"
+
 
 volumes:
   supportdraken_data: {}  

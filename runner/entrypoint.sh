@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-dockerd-entrypoint.sh &
+dockerd-entrypoint.sh --log-level=error &
 
 until docker info >/dev/null 2>&1; do
   echo "waiting for docker daemon"
@@ -24,10 +24,9 @@ declare -a ghcr_images=(
   ghcr.io/sundsvallskommun/api-service-templating:latest
 )
 
-# List of all local images
+# List of all images that are built locally, basically the frontend images. 
 declare -a react_images=(
-  web-app-draken-public-frontend
-  web-app-draken-public-backend
+  
 )
 
 force_build="${1:-}"

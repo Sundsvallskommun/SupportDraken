@@ -62,15 +62,15 @@ integration:
   case-management:
     base-url: http://wiremock:8080/casemanagement
   eventlog:
-    base-url: http://eventlog-api:8008/
+    base-url: http://api-service-eventlog:8080/
   oep-integrator:
     base-url: http://wiremock-api:8080/oepintegrator
   party:
-    base-url: http://party-api:8080/
+    base-url: http://api-service-party:8080/
   support-management:
-    base-url: http://support-management-api:8080/
+    base-url: http://api-service-support-management:8080/
   case-data:
-    base-url: http://case-data-api:8080/
+    base-url: http://api-service-case-data:8080/
     namespaces:
       - CONTACTSUNDSVALL
 
