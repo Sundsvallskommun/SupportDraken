@@ -9,42 +9,17 @@ EXTERNAL_CASE_ID="externalCaseId"
 ORGANIZATION_NUMBER="organizationNumber"
 PARTY_ID="partyId"
 
-test_endpoint() {
-  local method="$1"
-  local url="$2"
-  local data="${3:-}"
+# Shared helpers
+source "$(dirname "$0")/../_helpers.sh"
+init_report
 
-  echo ">> $method $url"
+# Get status for a specific case by external case id (404)
+run_status "GetStatusByExternalCaseId" GET "$BASE_URL/$MUNICIPALITY_ID/cases/$EXTERNAL_CASE_ID/status" 404 "Case not found"
 
-  case "$method" in
-    GET)
-      curl -sS "$url";;
-    DELETE)
-      if [ -n "$data" ]; then
-        curl -sS -X DELETE "$url" -H "Content-Type: application/json" -d "$data"
-      else
-        curl -sS -X DELETE "$url"
-      fi;;
-    POST)
-      curl -sS -X POST "$url" -H "Content-Type: application/json" -d "${data:-{}}";;
-    PUT)
-      curl -sS -X PUT "$url" -H "Content-Type: application/json" -d "${data:-{}}";;
-    PATCH)
-      curl -sS -X PATCH "$url" -H "Content-Type: application/json" -d "${data:-{}}";;
-    *)
-      echo "Ogiltig metod: $method" >&2
-      exit 2;;
-  esac
+# Get case statuses for an organization number (200 [])
+run_test "GetStatusesByOrganization" GET "$BASE_URL/$MUNICIPALITY_ID/organization/$ORGANIZATION_NUMBER/cases/status" "[]"
 
-  echo
-} 
+# Get case statuses for a party id (200 [])
+run_test "GetStatusesByPartyId" GET "$BASE_URL/$MUNICIPALITY_ID/$PARTY_ID/statuses" "[]"
 
-### Get status for a specific case by external case id.
-echo "Expects an error"
-test_endpoint GET    "$BASE_URL/$MUNICIPALITY_ID/cases/$EXTERNAL_CASE_ID/status"
-### Get case statuses for an organization number.
-echo "Expects an empty array []"
-test_endpoint GET "$BASE_URL/$MUNICIPALITY_ID/organization/$ORGANIZATION_NUMBER/cases/status"
-### get case statuses for a party id.
-echo "Expects an empty array []"
-test_endpoint GET    "$BASE_URL/$MUNICIPALITY_ID/$PARTY_ID/statuses"
+print_summary_and_exit

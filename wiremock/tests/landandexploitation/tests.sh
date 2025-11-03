@@ -9,40 +9,14 @@ NAMESPACE="internal"
 ERRAND_ID="12345"
 PROCESS_INSTANCE_ID="mock-process-12345"
 
-test_endpoint() {
-  local method="$1"
-  local url="$2"
-  local data="${3:-}"
+# Shared helpers
+source "$(dirname "$0")/../_helpers.sh"
+init_report
 
-  echo ">> $method $url"
+# Start a process
+run_test "StartProcess" POST "$BASE_URL/$MUNICIPALITY_ID/$NAMESPACE/process/start/$ERRAND_ID" "processId"
 
-  case "$method" in
-    GET)
-      curl -sS "$url";;
-    DELETE)
-      if [ -n "$data" ]; then
-        curl -sS -X DELETE "$url" -H "Content-Type: application/json" -d "$data"
-      else
-        curl -sS -X DELETE "$url"
-      fi;;
-    POST)
-      curl -sS -X POST "$url" -H "Content-Type: application/json" -d "${data:-{}}";;
-    PUT)
-      curl -sS -X PUT "$url" -H "Content-Type: application/json" -d "${data:-{}}";;
-    PATCH)
-      curl -sS -X PATCH "$url" -H "Content-Type: application/json" -d "${data:-{}}";;
-    *)
-      echo "Ogiltig metod: $method" >&2
-      exit 2;;
-  esac
+# Update a process
+run_test "UpdateProcess" POST "$BASE_URL/$MUNICIPALITY_ID/$NAMESPACE/process/update/$PROCESS_INSTANCE_ID"
 
-  echo
-}
-
-### Start a process
-echo "Expect a processId" 
-test_endpoint POST "$BASE_URL/$MUNICIPALITY_ID/$NAMESPACE/process/start/$ERRAND_ID"
-
-### Update a process
-echo "Expect an empty response" 
-test_endpoint POST "$BASE_URL/$MUNICIPALITY_ID/$NAMESPACE/process/update/$PROCESS_INSTANCE_ID"
+print_summary_and_exit
