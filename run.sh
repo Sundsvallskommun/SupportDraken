@@ -28,16 +28,16 @@ if [ "$MSYSTEM" ]; then
   export MSYS_NO_PATHCONV=1
 fi
 
-# Remove previous runner container
-"$bin" rm -f runner &>/dev/null || :
-"$bin" build -t runner runner
+# Remove previous supportdraken container
+"$bin" rm -f supportdraken &>/dev/null || :
+"$bin" build -t supportdraken runner
 
 "$bin" volume create docker-cache || :
 "$bin" volume create maven-cache || :
 "$bin" volume create mariadb-data || :
 
 "$bin" run -it --rm --privileged \
-  --name runner \
+  --name supportdraken \
   -v docker-cache:/var/lib/docker \
   -v maven-cache:/root/.m2 \
   -v mariadb-data:/var/lib/mysql \
@@ -45,16 +45,16 @@ fi
   -w /workspace \
   -p 3000:3000 \
   -p 3001:3001 \
-  -p 8092:8080 \
-  -p 8091:8080 \
+  -p 8092:8092 \
+  -p 8091:8091 \
   -p 8080:8080 \
-  -p 8083:8080 \
-  -p 8088:8080 \
-  -p 8084:8080 \
-  -p 8090:8080 \
-  -p 8081:8080 \
-  -p 8089:8080 \
-  -p 8082:8080 \
-  -p 8087:8080 \
-  -p 8086:8080 \
-  runner "${rest[@]}"
+  -p 8083:8083 \
+  -p 8088:8088 \
+  -p 8084:8084 \
+  -p 8090:8090 \
+  -p 8081:8081 \
+  -p 8089:8089 \
+  -p 8082:8082 \
+  -p 8087:8087 \
+  -p 8086:8086 \
+  supportdraken "${rest[@]}"
