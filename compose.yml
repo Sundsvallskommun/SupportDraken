@@ -60,10 +60,10 @@ services:
       - ./config/application-case-data.yml:/app/config/application-default.yml
     healthcheck:
       test: ["CMD", "wget", "-q", "http://localhost:8080/actuator/health"]
-      interval: 10s
-      timeout: 5s
+      interval: 20s
+      timeout: 15s
       retries: 5
-      start_period: 10s
+      start_period: 30s
 
   api-service-eventlog:
     image: ghcr.io/sundsvallskommun/api-service-eventlog:latest
@@ -79,10 +79,10 @@ services:
       - ./config/application-eventlog.yml:/app/config/application-default.yml
     healthcheck:
       test: ["CMD", "wget", "-q", "http://localhost:8080/actuator/health"]
-      interval: 10s
-      timeout: 5s
+      interval: 20s
+      timeout: 15s
       retries: 5
-      start_period: 10s
+      start_period: 30s
 
   api-service-access-mapper:
     image: ghcr.io/sundsvallskommun/api-service-access-mapper:latest
@@ -98,10 +98,10 @@ services:
       - ./config/application-access-mapper.yml:/app/config/application-default.yml
     healthcheck:
       test: ["CMD", "wget", "-q", "http://localhost:8080/actuator/health"]
-      interval: 10s
-      timeout: 5s
+      interval: 20s
+      timeout: 15s
       retries: 5
-      start_period: 10s
+      start_period: 30s
 
   api-service-message-exchange:
     image: ghcr.io/sundsvallskommun/api-service-message-exchange:latest
@@ -117,10 +117,10 @@ services:
       - ./config/application-message-exchange.yml:/app/config/application-default.yml
     healthcheck:
       test: ["CMD", "wget", "-q", "http://localhost:8080/actuator/health"]
-      interval: 10s
-      timeout: 5s
+      interval: 20s
+      timeout: 15s
       retries: 5
-      start_period: 10s
+      start_period: 30s
 
   api-service-case-status:
     image: ghcr.io/sundsvallskommun/api-service-case-status:latest
@@ -136,10 +136,10 @@ services:
       - ./config/application-case-status.yml:/app/config/application-default.yml
     healthcheck:
       test: ["CMD", "wget", "-q", "http://localhost:8080/actuator/health"]
-      interval: 10s
-      timeout: 5s
+      interval: 20s
+      timeout: 15s
       retries: 5
-      start_period: 10s
+      start_period: 30s
 
   api-service-messaging-settings:
     image: ghcr.io/sundsvallskommun/api-service-messaging-settings:latest
@@ -155,10 +155,10 @@ services:
       - ./config/application-messaging-settings.yml:/app/config/application-default.yml
     healthcheck:
       test: ["CMD", "wget", "-q", "http://localhost:8080/actuator/health"]
-      interval: 10s
-      timeout: 5s
+      interval: 20s
+      timeout: 15s
       retries: 5
-      start_period: 10s
+      start_period: 30s
 
   api-service-messaging:
     image: ghcr.io/sundsvallskommun/api-service-messaging:latest
@@ -174,10 +174,10 @@ services:
       - ./config/application-messaging.yml:/app/config/application-default.yml
     healthcheck:
       test: ["CMD", "wget", "-q", "http://localhost:8080/actuator/health"]
-      interval: 10s
-      timeout: 5s
+      interval: 20s
+      timeout: 15s
       retries: 5
-      start_period: 10s
+      start_period: 30s
       
   api-service-notes:
     image: ghcr.io/sundsvallskommun/api-service-notes:latest
@@ -193,10 +193,10 @@ services:
       - ./config/application-notes.yml:/app/config/application-default.yml
     healthcheck:
       test: ["CMD", "wget", "-q", "http://localhost:8080/actuator/health"]
-      interval: 10s
-      timeout: 5s
+      interval: 20s
+      timeout: 15s
       retries: 5
-      start_period: 10s
+      start_period: 30s
             
   api-service-party:
     image: ghcr.io/sundsvallskommun/api-service-party:latest
@@ -212,10 +212,10 @@ services:
       - ./config/application-party.yml:/app/config/application-default.yml
     healthcheck:
       test: ["CMD", "wget", "-q", "http://localhost:8080/actuator/health"]
-      interval: 10s
-      timeout: 5s
+      interval: 20s
+      timeout: 15s
       retries: 5
-      start_period: 10s
+      start_period: 30s
                   
   api-service-relations:
     image: ghcr.io/sundsvallskommun/api-service-relations:latest
@@ -231,10 +231,10 @@ services:
       - ./config/application-relations.yml:/app/config/application-default.yml
     healthcheck:
       test: ["CMD", "wget", "-q", "http://localhost:8080/actuator/health"]
-      interval: 10s
-      timeout: 5s
+      interval: 20s
+      timeout: 15s
       retries: 5
-      start_period: 10s
+      start_period: 30s
                         
   api-service-support-management:
     image: ghcr.io/sundsvallskommun/api-service-support-management:latest
@@ -250,10 +250,10 @@ services:
       - ./config/application-support-management.yml:/app/config/application-default.yml
     healthcheck:
       test: ["CMD", "wget", "-q", "http://localhost:8080/actuator/health"]
-      interval: 10s
-      timeout: 5s
+      interval: 20s
+      timeout: 15s
       retries: 5
-      start_period: 10s
+      start_period: 30s
                               
   api-service-templating:
     image: ghcr.io/sundsvallskommun/api-service-templating:latest
@@ -269,10 +269,10 @@ services:
       - ./config/application-templating.yml:/app/config/application-default.yml
     healthcheck:
       test: ["CMD", "wget", "-q", "http://localhost:8080/actuator/health"]
-      interval: 10s
-      timeout: 5s
+      interval: 20s
+      timeout: 15s
       retries: 5
-      start_period: 10s
+      start_period: 30s
 
   data-loader:
     image: mariadb:10.6
