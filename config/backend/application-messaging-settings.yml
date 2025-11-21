@@ -22,5 +22,3 @@ spring:
 integration:
   employee:
     url: http://wiremock:8080/employee
-
-  

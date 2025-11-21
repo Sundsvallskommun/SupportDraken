@@ -1,7 +1,7 @@
 {
 	"request": {
 		"method": "GET",
-		"urlPathPattern": "/activedirectory/[^/]+/groupmembers/personal/group1"
+		"urlPathPattern": "/activedirectory/[^/]+/groupmembers/personal/draken_ks_admin"
 	},
 	"response": {
 		"status": 200,

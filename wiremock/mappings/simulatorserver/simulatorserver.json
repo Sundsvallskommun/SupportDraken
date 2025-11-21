@@ -1,14 +1,15 @@
 {
     "request": {
-        "method": "GET",
-        "urlPathPattern": "/activedirectory/[^/]+/groupmembers/personal/.*"
+        "method": "POST",
+        "urlPathPattern": "/simulations/.*"
     },
     "response": {
         "status": 200,
         "headers": {
             "Content-Type": "application/json"
         },
-        "body": "[]"
-    },
-    "priority": 3
+        "jsonBody": {
+            "status": "OK"
+        }
+    }
 }
