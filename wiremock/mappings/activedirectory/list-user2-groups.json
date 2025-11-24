@@ -1,10 +1,10 @@
 {
-  "request": {
-    "method": "GET",
-    "urlPathPattern": "/activedirectory/[^/]+/usergroups/personal/jan01doe"
-  },
+	"request": {
+		"method": "GET",
+		"urlPathPattern": "/activedirectory/[^/]+/usergroups/personal/jan01doe"
+	},
 	"response": {
-        "status": 200,
+		"status": 200,
 		"headers": {
 			"Content-Type": "application/json"
 		},

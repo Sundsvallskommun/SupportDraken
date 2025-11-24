@@ -1,15 +1,14 @@
 {
-  "request": {
-    "method": "GET",
-    "urlPathPattern": "/activedirectory/[^/]+/usergroups/personal/joe01doe"
-  },
+	"request": {
+		"method": "GET",
+		"urlPathPattern": "/activedirectory/[^/]+/usergroups/personal/joe01doe"
+	},
 	"response": {
-        "status": 200,
+		"status": 200,
 		"headers": {
 			"Content-Type": "application/json"
 		},
 		"bodyFileName": "activedirectory/list-user1-groups-response.json"
-	}
-	,
+	},
 	"priority": 1
 }

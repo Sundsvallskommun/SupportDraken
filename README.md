@@ -1,171 +1,198 @@
 # SupportDraken
 
-_Package of all services needed to run SupportDraken. Includes scripts for starting docker containers._
+**SupportDraken** is a local development playground for the entire Draken support ecosystem. It orchestrates all backend microservices, databases, mocks, and the web app—so you can spin up a full stack with a single command.
 
-## Getting Started
+---
 
-1. **Clone Repository**
-   ```bash
-     git clone git@github.com:Sundsvallskommun/SupportDraken.git
-     cd SupportDraken
-   ```
-2. **Configure Services**
+## Features
 
-   Before running the application, you need to ensure that all required configurations are set; otherwise, the application may fail to start.
-   
-     *Required configurations:*
-    - Nothing yet!
+- **API stack**: All Draken microservices
+- **Database**: MariaDB preloaded with test data
+- **Mocking**: WireMock for external API stubs
+- **Web app**: Frontend & backend from `web-app-draken-public` (built locally)
 
-3. **Run Service:**
-    ```bash
-    cd SupportDraken
-    ./run.sh
-    ```
+---
 
-## Default Test-Data
-  By default some test-data is inserted to some of the databases, primarilty metadata. The purpose of this is to have simple basic version that is runnable with minimal effort. 
+## Requirements
 
-  If you need to add more test-data, insert scripts can be added/modified. 
-  The scripts can be found at:
-  ```bash
-  cd /SupportDraken/config/mockdata
-  ```
-## Available Scripts
+- Docker (or Podman)
+- No other dependencies required
 
-1. **Start the service**
-   ```bash
-   ./run.sh
-   ./run.sh -f (forces rebuild of local images) 
-   ```
+---
 
-2. **Stop the service**
-   ```
-   ./stop.sh
-   ./stop.sh -v (removes volumes)
-   ```
+## Quick Start
 
-## Services, ports and descriptions ## 
-  SupportDraken consists of multiple services which are configured to run on its own port.
+Clone and launch everything:
 
-1. **api-service-eventlog**
+```bash
+git clone git@github.com:Sundsvallskommun/SupportDraken.git
+cd SupportDraken
+./scripts/run.sh
+```
 
-  _Eventlog that acts as a centralized event logging system. It receives and stores events from various services within the ecosystem, enabling other services to query and retrieve event data. This service provides a way to track, store, and access event logs across different applications._
-  ```
-   Eventlog runs on port 8080.
-  ```
+---
 
-2. **api-service-notes**
+## Building the Web App Images
 
-  _Notes provides functionality for storing and retrieving notes linked to an organization or a citizen._
-  ```
-   Notes runs on port 8081.
-  ```
+SupportDraken builds the public web-app frontend and backend directly from GitHub, injecting your config at build time.
 
-3. **api-service-relations**
+To build images:
 
-  _Relations stores relations between internal and external resources._
-  ```
-   Relations runs on port 8082.
-  ```
+```bash
+docker compose --profile build run --rm builder
+```
 
-4. **api-service-message-exchange**
+The builder will:
+1. Clone `web-app-draken-public`
+2. Copy config from `config/`
+3. Apply custom Dockerfiles
+4. Build frontend & backend images
 
-  _MessageExchange is dedicated to storing and retrieving internal messages securely. It enables authorized stakeholders to access relevant communications, serving as the central hub for internal interactions._
-  ```
-   MessageExchange runs on port 8083.
-  ```
+**Config files you control:**
 
-5. **api-service-messaging-settings**
+- `config/.env-draken-public-backend`
+- `config/.env-draken-public-frontend`
+- `config/dockerfiles/Dockerfile-draken-public-backend`
+- `config/dockerfiles/Dockerfile-draken-public-frontend`
 
-  _MessagingSettings stores messaging configuration for organizations and departments._
-  ```
-   MessagingSettings runs on port 8084.
-  ```
+**Updating config?**
+Change the files, then rebuild and restart:
 
-6. **api-service-templating**
+```bash
+docker compose --profile build run --rm builder
+docker compose up -d
+```
 
-  _Templating provides functionality for storing and rendering templates. It supports rendering templates into various text-based formats such as HTML and plain text, as well as converting them into PDF documents._
-  ```
-   Templating runs on port 8086.
-  ```
+---
 
-7. **api-service-support-management**
+## Starting & Stopping the Environment
 
-  _SupportManagement provides features for managing cases related to support related functions. It includes functionalities such as creating, updating, and tracking errand statuses and progress._
-  ```
-   SupportManagment runs on port 8087.
-  ```
+Start all services:
 
-8. **api-service-case-status**
+```bash
+docker compose up -d
+```
 
-  _CaseStatus provides updated status information about cases in underlying systems, ensuring that users are always informed about the current state and progress of their cases._
-  ```
-   CaseStatus runs on port 8088.
-  ```
+Or use the helper script:
 
-9. **api-service-party**
 
-  _Party is a proxy service for the underlying citizen and legalentity services, with the aim of simplifying for clients who need to translate between legalId and partyId for individuals or organizations._
-  ```
-   Party runs on port 8089.
-  ```
+```bash
+./scripts/run.sh
+```
 
-10. **api-service-case-data**
+Stop all services:
 
-  _CaseData manages cases primarily related to citizen-related subjects. Handles cases for parking permits and cases related to land and exploitation subjects._
-  ```
-   CaseData runs on port 8091.
-  ```
+```bash
+./scripts/stop.sh
+```
 
-11. **api-service-access-mapper**
+Stop and remove all volumes (reset state):
 
-  _AccessMapper serves as a bridge between the Active Directory service and internal systems, managing access mappings and translating Active Directory groups into corresponding internal access groups._
-  ```
-   AccessMapper runs on port 8092.
-  ```
+```bash
+./scripts/stop.sh -v
+```
 
-12. **api-service-messaging**
+---
 
-  _Messaging is used to send different type of messages, such as emails, text messages and letters._
-  ```
-   Messaging runs on port 8090.
-  ```
+## Accessing the Web App
 
-13. **Wiremock**
+- **Frontend:** [http://localhost:3000](http://localhost:3000)
+- **Backend:** [http://localhost:3001](http://localhost:3001)
 
-  _WireMock is a library for stubbing and mocking web services. It constructs an HTTP server that we can connect to as we would to an actual web service._
-  ```
-   Wiremock runs on port 9000.
-  ```
+---
 
-14. **MariaDB**
+## Services & Ports
 
-  _MariaDB Server is one of the most popular open source relational databases._
-  ```
-   MariaDB runs on port 3306.
-  ```
+| Service            | Port | Purpose                             |
+|--------------------|------|-------------------------------------|
+| nginx proxy        | 8888 | Central reverse proxy for web/app   |
+| eventlog           | 8080 | Central event logger                |
+| notes              | 8081 | Notes for orgs/citizens             |
+| relations          | 8082 | Internal/external relation storage  |
+| message-exchange   | 8083 | Internal secure messages            |
+| messaging-settings | 8084 | Messaging config per org/department |
+| templating         | 8086 | Template rendering + PDF gen        |
+| support-management | 8087 | Handles support cases               |
+| case-status        | 8088 | Live case status info               |
+| party              | 8089 | Maps legalId ↔ partyId              |
+| messaging          | 8090 | Sends email/SMS/letters             |
+| case-data          | 8091 | Parking/land/exploitation cases     |
+| access-mapper      | 8092 | AD → internal access mapping        |
+| WireMock           | 9000 | Mock external systems               |
+| MariaDB            | 3306 | All databases used by services      |
 
-  Multiple of the service requires their own database which is ran in this instance of MariaDB.
-  ```
-  Databases:
-  - relations
-  - notes
-  - eventlog
-  - message_exchange
-  - messaging_settings
-  - templating
-  - support_management
-  - case_status
-  - messaging
-  - case_data
-  - case_management
-  - access_mapper
-  ```
+**MariaDB Databases:**
+`relations`, `notes`, `eventlog`, `message_exchange`, `messaging_settings`, `templating`, `support_management`, `case_status`, `messaging`, `case_data`, `case_management`, `access_mapper`
+
+---
+
+## Test Data
+
+Services are preloaded with metadata for a clean boot. To add more data, drop SQL scripts into:
+
+```
+config/db
+```
+
+---
+
+
+## Logs & Troubleshooting
+
+> **Note:** If you started the environment using `./scripts/run.sh`, Docker is running inside a container (docker-in-docker). You must run troubleshooting commands inside the `runner` container.
+
+### If you started with `docker compose up -d` (directly on your host):
+
+- Tail all logs:
+	```bash
+	docker compose logs -f
+	```
+- Tail a specific service:
+	```bash
+	docker compose logs -f api-service-support-management
+	```
+- Check running services:
+	```bash
+	docker compose ps
+	```
+
+### If you started with `./scripts/run.sh` (docker-in-docker):
+
+1. Enter the runner container shell:
+	 ```sh
+	 docker exec -it supportdraken sh
+	 ```
+2. Then run compose commands inside the container:
+	 ```sh
+	 docker compose logs -f
+	 docker compose ps
+	 ```
+
+---
+
+### Common Issues
+
+**Repo clone fails**
+- Check your internet connection
+- Ensure you have GitHub access
+- Make sure `git` is installed in the builder container
+
+**Frontend won’t load**
+- Build may not have completed
+- Check `NEXT_PUBLIC_API_URL` in your config
+- Remember: `NEXT_PUBLIC_*` variables are injected at **build time**, not runtime
+
+**Environment variables not updating?**
+- If you change `config/.env-draken-public-frontend`, you must rebuild the frontend image for changes to take effect
+
+---
 
 ## Contributing
 
-Contributions are welcome! Please
-see [CONTRIBUTING.md](https://github.com/Sundsvallskommun/.github/blob/main/.github/CONTRIBUTING.md) for guidelines.
+Pull requests are welcome! See the shared org guidelines:
+[Sundsvallskommun Contribution Guide](https://github.com/Sundsvallskommun/.github/blob/main/.github/CONTRIBUTING.md)
+
+---
 
 ## License
 

@@ -5,7 +5,7 @@ spring:
     password: case_status
   jpa:
     hibernate:
-    ddl-auto: validate
+      ddl-auto: validate
   flyway:
     enabled: true
   security:
@@ -73,5 +73,3 @@ integration:
     base-url: http://api-service-case-data:8080/
     namespaces:
       - CONTACTSUNDSVALL
-
-  

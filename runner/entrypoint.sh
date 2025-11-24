@@ -26,7 +26,9 @@ declare -a ghcr_images=(
 
 # List of all images that are built locally, basically the frontend images. 
 declare -a react_images=(
-  
+  web-app-draken-public-backend:latest
+  web-app-draken-public-frontend:latest
+  web-app-fake-sso-idp:latest
 )
 
 force_build="${1:-}"
@@ -50,11 +52,11 @@ if [ "$force_build" = "-f" ]; then
 fi
 
 if [ "$need_build" = true ]; then
-  echo "Building frontend images via builder"
+  echo "Building web-app-draken-public images via builder"
   docker compose --profile build build builder
   docker compose --profile build run --rm builder
 else
-  echo "All React images found locally"
+  echo "All web-app-draken-public images found locally"
 fi
 
 echo "Starting services"

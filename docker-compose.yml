@@ -1,8 +1,8 @@
 services:
   builder:
     build:
-      context: builder
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: builder/Dockerfile
     profiles: ["build"]
     privileged: true
     volumes:
@@ -41,7 +41,7 @@ services:
       retries: 30
     volumes:
       - supportdraken_data:/var/lib/mysql
-      - ./db-init.sql:/docker-entrypoint-initdb.d/01-init.sql:ro
+      - ./config/db/db-init.sql:/docker-entrypoint-initdb.d/01-init.sql:ro
     ports:
       - "3306:3306"
     restart: unless-stopped
@@ -57,7 +57,7 @@ services:
     ports:
       - 8091:8080
     volumes:
-      - ./config/application-case-data.yml:/app/config/application-default.yml
+      - ./config/backend/application-case-data.yml:/app/config/application-default.yml
     healthcheck:
       test: ["CMD", "wget", "-q", "http://localhost:8080/actuator/health"]
       interval: 20s
@@ -76,7 +76,7 @@ services:
     ports:
       - 8080:8080
     volumes:
-      - ./config/application-eventlog.yml:/app/config/application-default.yml
+      - ./config/backend/application-eventlog.yml:/app/config/application-default.yml
     healthcheck:
       test: ["CMD", "wget", "-q", "http://localhost:8080/actuator/health"]
       interval: 20s
@@ -95,7 +95,7 @@ services:
     ports:
       - 8092:8080
     volumes:
-      - ./config/application-access-mapper.yml:/app/config/application-default.yml
+      - ./config/backend/application-access-mapper.yml:/app/config/application-default.yml
     healthcheck:
       test: ["CMD", "wget", "-q", "http://localhost:8080/actuator/health"]
       interval: 20s
@@ -114,7 +114,7 @@ services:
     ports:
       - 8083:8080
     volumes:
-      - ./config/application-message-exchange.yml:/app/config/application-default.yml
+      - ./config/backend/application-message-exchange.yml:/app/config/application-default.yml
     healthcheck:
       test: ["CMD", "wget", "-q", "http://localhost:8080/actuator/health"]
       interval: 20s
@@ -133,7 +133,7 @@ services:
     ports:
       - 8088:8080
     volumes:
-      - ./config/application-case-status.yml:/app/config/application-default.yml
+      - ./config/backend/application-case-status.yml:/app/config/application-default.yml
     healthcheck:
       test: ["CMD", "wget", "-q", "http://localhost:8080/actuator/health"]
       interval: 20s
@@ -152,7 +152,7 @@ services:
     ports:
       - 8084:8080
     volumes:
-      - ./config/application-messaging-settings.yml:/app/config/application-default.yml
+      - ./config/backend/application-messaging-settings.yml:/app/config/application-default.yml
     healthcheck:
       test: ["CMD", "wget", "-q", "http://localhost:8080/actuator/health"]
       interval: 20s
@@ -171,7 +171,7 @@ services:
     ports:
       - 8090:8080
     volumes:
-      - ./config/application-messaging.yml:/app/config/application-default.yml
+      - ./config/backend/application-messaging.yml:/app/config/application-default.yml
     healthcheck:
       test: ["CMD", "wget", "-q", "http://localhost:8080/actuator/health"]
       interval: 20s
@@ -190,7 +190,7 @@ services:
     ports:
       - 8081:8080
     volumes:
-      - ./config/application-notes.yml:/app/config/application-default.yml
+      - ./config/backend/application-notes.yml:/app/config/application-default.yml
     healthcheck:
       test: ["CMD", "wget", "-q", "http://localhost:8080/actuator/health"]
       interval: 20s
@@ -209,7 +209,7 @@ services:
     ports:
       - 8089:8080
     volumes:
-      - ./config/application-party.yml:/app/config/application-default.yml
+      - ./config/backend/application-party.yml:/app/config/application-default.yml
     healthcheck:
       test: ["CMD", "wget", "-q", "http://localhost:8080/actuator/health"]
       interval: 20s
@@ -228,7 +228,7 @@ services:
     ports:
       - 8082:8080
     volumes:
-      - ./config/application-relations.yml:/app/config/application-default.yml
+      - ./config/backend/application-relations.yml:/app/config/application-default.yml
     healthcheck:
       test: ["CMD", "wget", "-q", "http://localhost:8080/actuator/health"]
       interval: 20s
@@ -247,14 +247,14 @@ services:
     ports:
       - 8087:8080
     volumes:
-      - ./config/application-support-management.yml:/app/config/application-default.yml
+      - ./config/backend/application-support-management.yml:/app/config/application-default.yml
     healthcheck:
       test: ["CMD", "wget", "-q", "http://localhost:8080/actuator/health"]
       interval: 20s
       timeout: 15s
       retries: 5
       start_period: 30s
-                              
+                               
   api-service-templating:
     image: ghcr.io/sundsvallskommun/api-service-templating:latest
     container_name: api-service-templating
@@ -266,7 +266,7 @@ services:
     ports:
       - 8086:8080
     volumes:
-      - ./config/application-templating.yml:/app/config/application-default.yml
+      - ./config/backend/application-templating.yml:/app/config/application-default.yml
     healthcheck:
       test: ["CMD", "wget", "-q", "http://localhost:8080/actuator/health"]
       interval: 20s
@@ -284,9 +284,9 @@ services:
       api-service-support-management:
         condition: service_healthy
     volumes:
-      - ./config/mockdata/eventlog_mockdata.sql:/config/mockdata/eventlog_mockdata.sql
-      - ./config/mockdata/messaging_settings_mockdata.sql:/config/mockdata/messaging_settings_mockdata.sql
-      - ./config/mockdata/support_management_mockdata.sql:/config/mockdata/support_management_mockdata.sql
+      - ./config/db/eventlog_mockdata.sql:/config/mockdata/eventlog_mockdata.sql
+      - ./config/db/messaging_settings_mockdata.sql:/config/mockdata/messaging_settings_mockdata.sql
+      - ./config/db/support_management_mockdata.sql:/config/mockdata/support_management_mockdata.sql
     entrypoint: >
       bash -c "
       echo 'Waiting for databases to be ready.' &&
@@ -296,24 +296,109 @@ services:
         sleep 1
       done &&
       echo 'Importing test data into messaging_settings...' &&
-      mariadb -h mariadb -uroot -proot messaging_settings </config/mockdata/messaging_settings_mockdata.sql &&
+      mariadb -h mariadb -uroot -proot messaging_settings </config/db/messaging_settings_mockdata.sql &&
 
       until mariadb -h mariadb -uroot -proot eventlog -e 'SHOW TABLES;' | grep -q '^flyway_schema_history$'; do
         echo 'Waiting for Flyway in eventlog...'
         sleep 1
       done &&
       echo 'Importing test data into eventlog...' &&
-      mariadb -h mariadb -uroot -proot eventlog </config/mockdata/eventlog_mockdata.sql &&
+      mariadb -h mariadb -uroot -proot eventlog </config/db/eventlog_mockdata.sql &&
 
       until mariadb -h mariadb -uroot -proot support_management -e 'SHOW TABLES;' | grep -q '^flyway_schema_history$'; do
         echo 'Waiting for Flyway in support_management...'
         sleep 1
       done &&
       echo 'Importing test data into support_management...' &&
-      mariadb -h mariadb -uroot -proot support_management </config/mockdata/support_management_mockdata.sql &&
+      mariadb -h mariadb -uroot -proot support_management </config/db/support_management_mockdata.sql &&
 
       echo 'All test data imported successfully.'"
 
+  web-app-draken-public-backend:
+    image: web-app-draken-public-backend:latest
+    pull_policy: never
+    container_name: web-app-draken-public-backend
+    depends_on:
+      api-service-support-management:
+        condition: service_healthy
+      wiremock:
+        condition: service_healthy
+      proxy:
+        condition: service_healthy
+    ports:
+      - "3001:3001"
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://localhost:3001/kc/health/up"]
+      interval: 20s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+    restart: unless-stopped
+
+  web-app-draken-public-frontend:
+    image: web-app-draken-public-frontend:latest
+    pull_policy: never
+    container_name: web-app-draken-public-frontend
+    depends_on:
+      web-app-draken-public-backend:
+        condition: service_healthy
+    ports:
+      - "3000:3000"
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://localhost:3000"]
+      interval: 20s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+    restart: unless-stopped
+
+  web-app-fake-sso-idp:
+    image: web-app-fake-sso-idp:latest
+    pull_policy: never
+    container_name: web-app-fake-sso-idp
+    ports:
+      - "7001:7000"
+    volumes:
+      - ./config/frontend/.env-web-app-fake-sso-idp:/app/.env.production.local
+    restart: unless-stopped
+    networks:
+      - default
+
+  # simple nginx reverse-proxy for local dev routing
+  proxy:
+    image: nginx:stable-alpine
+    container_name: supportdraken_proxy
+    ports:
+      - "8888:8080"
+    volumes:
+      - ./config/nginx/proxy.conf:/etc/nginx/conf.d/proxy.conf:ro
+    extra_hosts:
+      # Map host.docker.internal to the host gateway so nginx can reach host services on Linux
+      - "host.docker.internal:host-gateway"
+    depends_on:
+      - api-service-case-data
+      - api-service-eventlog
+      - api-service-access-mapper
+      - api-service-message-exchange
+      - api-service-case-status
+      - api-service-messaging-settings
+      - api-service-messaging
+      - api-service-notes
+      - api-service-party
+      - api-service-relations
+      - api-service-support-management
+      - api-service-templating
+      - wiremock
+    networks:
+      default:
+        aliases:
+          - proxy
+    healthcheck:
+      test: ["CMD-SHELL", "test -f /var/run/nginx.pid"]
+      interval: 5s
+      timeout: 3s
+      retries: 12
 
 volumes:
-  supportdraken_data: {}  
+  supportdraken_data:
+    name: supportdraken_data
