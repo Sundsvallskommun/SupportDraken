@@ -29,6 +29,8 @@ declare -a react_images=(
   web-app-draken-public-backend:latest
   web-app-draken-public-frontend:latest
   web-app-fake-sso-idp:latest
+  web-app-support-management-admin-backend:latest
+  web-app-support-management-admin-frontend:latest
 )
 
 force_build="${1:-}"
