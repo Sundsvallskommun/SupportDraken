@@ -1,6 +1,6 @@
 # SupportDraken
 
-**SupportDraken** is a local development playground for the entire Draken support ecosystem. It orchestrates all backend microservices, databases, mocks, and the web app—so you can spin up a full stack with a single command.
+**SupportDraken** is a local development playground for the entire Draken support ecosystem. It orchestrates all backend microservices, databases, mocks, the web app, and the new Smaug Admin tool—so you can spin up a full stack with a single command.
 
 ---
 
@@ -10,7 +10,7 @@
 - **Database**: MariaDB preloaded with test data
 - **Mocking**: WireMock for external API stubs
 - **Web app**: Frontend & backend from `web-app-draken-public` (built locally)
-
+- **Admin tool**: Smaug Admin for managing support-management configuration
 ---
 
 ## Requirements
@@ -54,6 +54,10 @@ The builder will:
 - `config/.env-draken-public-frontend`
 - `config/dockerfiles/Dockerfile-draken-public-backend`
 - `config/dockerfiles/Dockerfile-draken-public-frontend`
+- `config/.env-support-management-admin-backend`
+- `config/.env-support-management-admin-frontend`
+- `config/dockerfiles/Dockerfile-support-management-admin-backend`
+- `config/dockerfiles/Dockerfile-support-management-admin-frontend`
 
 **Updating config?**
 Change the files, then rebuild and restart:
@@ -94,10 +98,10 @@ Stop and remove all volumes (reset state):
 
 ---
 
-## Accessing the Web App
+## Accessing the Web App & Tools
 
 - **Frontend:** [http://localhost:3000](http://localhost:3000)
-- **Backend:** [http://localhost:3001](http://localhost:3001)
+- **Smaug Admin:** [http://localhost:3002](http://localhost:3002)
 
 ---
 
@@ -118,6 +122,7 @@ Stop and remove all volumes (reset state):
 | messaging          | 8090 | Sends email/SMS/letters             |
 | case-data          | 8091 | Parking/land/exploitation cases     |
 | access-mapper      | 8092 | AD → internal access mapping        |
+| Smaug Admin        | 3002 | Smaug admin tool UI/API             |
 | WireMock           | 9000 | Mock external systems               |
 | MariaDB            | 3306 | All databases used by services      |
 
@@ -133,6 +138,8 @@ Services are preloaded with metadata for a clean boot. To add more data, drop SQ
 ```
 config/db
 ```
+
+Smaug Admin tool configuration can be managed via `config/.env-smaug-admin`.
 
 ---
 

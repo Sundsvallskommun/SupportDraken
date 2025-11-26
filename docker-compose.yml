@@ -284,9 +284,9 @@ services:
       api-service-support-management:
         condition: service_healthy
     volumes:
-      - ./config/db/eventlog_mockdata.sql:/config/mockdata/eventlog_mockdata.sql
-      - ./config/db/messaging_settings_mockdata.sql:/config/mockdata/messaging_settings_mockdata.sql
-      - ./config/db/support_management_mockdata.sql:/config/mockdata/support_management_mockdata.sql
+      - ./config/db/eventlog_mockdata.sql:/config/db/eventlog_mockdata.sql
+      - ./config/db/messaging_settings_mockdata.sql:/config/db/messaging_settings_mockdata.sql
+      - ./config/db/support_management_mockdata.sql:/config/db/support_management_mockdata.sql
     entrypoint: >
       bash -c "
       echo 'Waiting for databases to be ready.' &&
@@ -346,6 +346,44 @@ services:
       - "3000:3000"
     healthcheck:
       test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://localhost:3000"]
+      interval: 20s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+    restart: unless-stopped
+
+  web-app-support-management-admin-backend:
+    image: web-app-support-management-admin-backend:latest
+    pull_policy: never
+    container_name: web-app-support-management-admin-backend
+    depends_on:
+      api-service-support-management:
+        condition: service_healthy
+      wiremock:
+        condition: service_healthy
+      proxy:
+        condition: service_healthy
+    ports:
+      - "3003:3003"
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://localhost:3003/api/"]
+      interval: 20s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+    restart: unless-stopped
+
+  web-app-support-management-admin-frontend:
+    image: web-app-support-management-admin-frontend:latest
+    pull_policy: never
+    container_name: web-app-support-management-admin-frontend
+    depends_on:
+      web-app-support-management-admin-backend:
+        condition: service_healthy
+    ports:
+      - "3002:3002"
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://localhost:3002 || true"]
       interval: 20s
       timeout: 10s
       retries: 5
