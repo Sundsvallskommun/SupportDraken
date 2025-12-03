@@ -1,0 +1,14 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPathPattern": "/webmessagecollector/[^/]+/messages/attachments/[^/]+"
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/octet-stream",
+      "Content-Disposition": "attachment; filename=\"attachment.bin\""
+    },
+    "bodyFileName": "common/Test_image.jpg"
+  }
+}

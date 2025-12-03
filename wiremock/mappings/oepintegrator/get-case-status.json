@@ -1,0 +1,11 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPathPattern": "/oepintegrator/[^/]+/[^/]+/cases/[^/]+/status"
+  },
+  "response": {
+    "status": 404,
+    "headers": { "Content-Type": "application/json" },
+    "jsonBody": { "error": "Case status not found" }
+  }
+}

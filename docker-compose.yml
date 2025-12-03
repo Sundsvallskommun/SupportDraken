@@ -1,0 +1,442 @@
+services:
+  builder:
+    build:
+      context: .
+      dockerfile: builder/Dockerfile
+    profiles: ["build"]
+    privileged: true
+    volumes:
+      - ./config:/config
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /root/.m2:/root/.m2
+
+  wiremock:
+    image: wiremock/wiremock:3.6.0
+    container_name: wiremock
+    ports:
+      - "9000:8080"
+    volumes:
+      - ./wiremock/mappings:/home/wiremock/mappings:rw
+      - ./wiremock/responses:/home/wiremock/__files:rw
+    command:
+      - "--verbose"
+      - "--global-response-templating"
+    healthcheck:
+      test: ["CMD", "wget", "-q", "http://localhost:8080/__admin" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    restart: unless-stopped
+
+  mariadb:
+    image: mariadb:10.6
+    environment:
+      MARIADB_ROOT_PASSWORD: root
+      TZ: Europe/Stockholm
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-uroot", "-proot"]
+      interval: 5s
+      timeout: 3s
+      retries: 30
+    volumes:
+      - supportdraken_data:/var/lib/mysql
+      - ./config/db/db-init.sql:/docker-entrypoint-initdb.d/01-init.sql:ro
+    ports:
+      - "3306:3306"
+    restart: unless-stopped
+
+  api-service-case-data:
+    image: ghcr.io/sundsvallskommun/api-service-case-data:latest
+    container_name: api-service-case-data
+    depends_on:
+      mariadb:
+        condition: service_healthy
+    environment:
+      SPRING_CONFIG_ADDITIONAL_LOCATION: file:/app/config/application-default.yml
+    ports:
+      - 8091:8080
+    volumes:
+      - ./config/backend/application-case-data.yml:/app/config/application-default.yml
+    healthcheck:
+      test: ["CMD", "wget", "-q", "http://localhost:8080/actuator/health"]
+      interval: 20s
+      timeout: 15s
+      retries: 5
+      start_period: 30s
+
+  api-service-eventlog:
+    image: ghcr.io/sundsvallskommun/api-service-eventlog:latest
+    container_name: api-service-eventlog
+    depends_on:
+      mariadb:
+        condition: service_healthy
+    environment:
+      SPRING_CONFIG_ADDITIONAL_LOCATION: file:/app/config/application-default.yml
+    ports:
+      - 8080:8080
+    volumes:
+      - ./config/backend/application-eventlog.yml:/app/config/application-default.yml
+    healthcheck:
+      test: ["CMD", "wget", "-q", "http://localhost:8080/actuator/health"]
+      interval: 20s
+      timeout: 15s
+      retries: 5
+      start_period: 30s
+
+  api-service-access-mapper:
+    image: ghcr.io/sundsvallskommun/api-service-access-mapper:latest
+    container_name: api-service-access-mapper
+    depends_on:
+      mariadb:
+        condition: service_healthy
+    environment:
+      SPRING_CONFIG_ADDITIONAL_LOCATION: file:/app/config/application-default.yml
+    ports:
+      - 8092:8080
+    volumes:
+      - ./config/backend/application-access-mapper.yml:/app/config/application-default.yml
+    healthcheck:
+      test: ["CMD", "wget", "-q", "http://localhost:8080/actuator/health"]
+      interval: 20s
+      timeout: 15s
+      retries: 5
+      start_period: 30s
+
+  api-service-message-exchange:
+    image: ghcr.io/sundsvallskommun/api-service-message-exchange:latest
+    container_name: api-service-message-exchange
+    depends_on:
+      mariadb:
+        condition: service_healthy
+    environment:
+      SPRING_CONFIG_ADDITIONAL_LOCATION: file:/app/config/application-default.yml
+    ports:
+      - 8083:8080
+    volumes:
+      - ./config/backend/application-message-exchange.yml:/app/config/application-default.yml
+    healthcheck:
+      test: ["CMD", "wget", "-q", "http://localhost:8080/actuator/health"]
+      interval: 20s
+      timeout: 15s
+      retries: 5
+      start_period: 30s
+
+  api-service-case-status:
+    image: ghcr.io/sundsvallskommun/api-service-case-status:latest
+    container_name: api-service-case-status
+    depends_on:
+      mariadb:
+        condition: service_healthy
+    environment:
+      SPRING_CONFIG_ADDITIONAL_LOCATION: file:/app/config/application-default.yml
+    ports:
+      - 8088:8080
+    volumes:
+      - ./config/backend/application-case-status.yml:/app/config/application-default.yml
+    healthcheck:
+      test: ["CMD", "wget", "-q", "http://localhost:8080/actuator/health"]
+      interval: 20s
+      timeout: 15s
+      retries: 5
+      start_period: 30s
+
+  api-service-messaging-settings:
+    image: ghcr.io/sundsvallskommun/api-service-messaging-settings:latest
+    container_name: api-service-messaging-settings
+    depends_on:
+      mariadb:
+        condition: service_healthy
+    environment:
+      SPRING_CONFIG_ADDITIONAL_LOCATION: file:/app/config/application-default.yml
+    ports:
+      - 8084:8080
+    volumes:
+      - ./config/backend/application-messaging-settings.yml:/app/config/application-default.yml
+    healthcheck:
+      test: ["CMD", "wget", "-q", "http://localhost:8080/actuator/health"]
+      interval: 20s
+      timeout: 15s
+      retries: 5
+      start_period: 30s
+
+  api-service-messaging:
+    image: ghcr.io/sundsvallskommun/api-service-messaging:latest
+    container_name: api-service-messaging
+    depends_on:
+      mariadb:
+        condition: service_healthy
+    environment:
+      SPRING_CONFIG_ADDITIONAL_LOCATION: file:/app/config/application-default.yml
+    ports:
+      - 8090:8080
+    volumes:
+      - ./config/backend/application-messaging.yml:/app/config/application-default.yml
+    healthcheck:
+      test: ["CMD", "wget", "-q", "http://localhost:8080/actuator/health"]
+      interval: 20s
+      timeout: 15s
+      retries: 5
+      start_period: 30s
+      
+  api-service-notes:
+    image: ghcr.io/sundsvallskommun/api-service-notes:latest
+    container_name: api-service-notes
+    depends_on:
+      mariadb:
+        condition: service_healthy
+    environment:
+      SPRING_CONFIG_ADDITIONAL_LOCATION: file:/app/config/application-default.yml
+    ports:
+      - 8081:8080
+    volumes:
+      - ./config/backend/application-notes.yml:/app/config/application-default.yml
+    healthcheck:
+      test: ["CMD", "wget", "-q", "http://localhost:8080/actuator/health"]
+      interval: 20s
+      timeout: 15s
+      retries: 5
+      start_period: 30s
+            
+  api-service-party:
+    image: ghcr.io/sundsvallskommun/api-service-party:latest
+    container_name: api-service-party
+    depends_on:
+      mariadb:
+        condition: service_healthy
+    environment:
+      SPRING_CONFIG_ADDITIONAL_LOCATION: file:/app/config/application-default.yml
+    ports:
+      - 8089:8080
+    volumes:
+      - ./config/backend/application-party.yml:/app/config/application-default.yml
+    healthcheck:
+      test: ["CMD", "wget", "-q", "http://localhost:8080/actuator/health"]
+      interval: 20s
+      timeout: 15s
+      retries: 5
+      start_period: 30s
+                  
+  api-service-relations:
+    image: ghcr.io/sundsvallskommun/api-service-relations:latest
+    container_name: api-service-relations
+    depends_on:
+      mariadb:
+        condition: service_healthy
+    environment:
+      SPRING_CONFIG_ADDITIONAL_LOCATION: file:/app/config/application-default.yml
+    ports:
+      - 8082:8080
+    volumes:
+      - ./config/backend/application-relations.yml:/app/config/application-default.yml
+    healthcheck:
+      test: ["CMD", "wget", "-q", "http://localhost:8080/actuator/health"]
+      interval: 20s
+      timeout: 15s
+      retries: 5
+      start_period: 30s
+                        
+  api-service-support-management:
+    image: ghcr.io/sundsvallskommun/api-service-support-management:latest
+    container_name: api-service-support-management
+    depends_on:
+      mariadb:
+        condition: service_healthy
+    environment:
+      SPRING_CONFIG_ADDITIONAL_LOCATION: file:/app/config/application-default.yml
+    ports:
+      - 8087:8080
+    volumes:
+      - ./config/backend/application-support-management.yml:/app/config/application-default.yml
+    healthcheck:
+      test: ["CMD", "wget", "-q", "http://localhost:8080/actuator/health"]
+      interval: 20s
+      timeout: 15s
+      retries: 5
+      start_period: 30s
+                               
+  api-service-templating:
+    image: ghcr.io/sundsvallskommun/api-service-templating:latest
+    container_name: api-service-templating
+    depends_on:
+      mariadb:
+        condition: service_healthy
+    environment:
+      SPRING_CONFIG_ADDITIONAL_LOCATION: file:/app/config/application-default.yml
+    ports:
+      - 8086:8080
+    volumes:
+      - ./config/backend/application-templating.yml:/app/config/application-default.yml
+    healthcheck:
+      test: ["CMD", "wget", "-q", "http://localhost:8080/actuator/health"]
+      interval: 20s
+      timeout: 15s
+      retries: 5
+      start_period: 30s
+
+  data-loader:
+    image: mariadb:10.6
+    depends_on:
+      api-service-messaging-settings:
+        condition: service_healthy
+      api-service-eventlog:
+        condition: service_healthy
+      api-service-support-management:
+        condition: service_healthy
+    volumes:
+      - ./config/db/eventlog_mockdata.sql:/config/db/eventlog_mockdata.sql
+      - ./config/db/messaging_settings_mockdata.sql:/config/db/messaging_settings_mockdata.sql
+      - ./config/db/support_management_mockdata.sql:/config/db/support_management_mockdata.sql
+    entrypoint: >
+      bash -c "
+      echo 'Waiting for databases to be ready.' &&
+
+      until mariadb -h mariadb -uroot -proot messaging_settings -e 'SHOW TABLES;' | grep -q '^flyway_schema_history$'; do
+        echo 'Waiting for Flyway in messaging_settings...'
+        sleep 1
+      done &&
+      echo 'Importing test data into messaging_settings...' &&
+      mariadb -h mariadb -uroot -proot messaging_settings </config/db/messaging_settings_mockdata.sql &&
+
+      until mariadb -h mariadb -uroot -proot eventlog -e 'SHOW TABLES;' | grep -q '^flyway_schema_history$'; do
+        echo 'Waiting for Flyway in eventlog...'
+        sleep 1
+      done &&
+      echo 'Importing test data into eventlog...' &&
+      mariadb -h mariadb -uroot -proot eventlog </config/db/eventlog_mockdata.sql &&
+
+      until mariadb -h mariadb -uroot -proot support_management -e 'SHOW TABLES;' | grep -q '^flyway_schema_history$'; do
+        echo 'Waiting for Flyway in support_management...'
+        sleep 1
+      done &&
+      echo 'Importing test data into support_management...' &&
+      mariadb -h mariadb -uroot -proot support_management </config/db/support_management_mockdata.sql &&
+
+      echo 'All test data imported successfully.'"
+
+  web-app-draken-public-backend:
+    image: web-app-draken-public-backend:latest
+    pull_policy: never
+    container_name: web-app-draken-public-backend
+    depends_on:
+      api-service-support-management:
+        condition: service_healthy
+      wiremock:
+        condition: service_healthy
+      proxy:
+        condition: service_healthy
+    ports:
+      - "3001:3001"
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://localhost:3001/kc/health/up"]
+      interval: 20s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+    restart: unless-stopped
+
+  web-app-draken-public-frontend:
+    image: web-app-draken-public-frontend:latest
+    pull_policy: never
+    container_name: web-app-draken-public-frontend
+    depends_on:
+      web-app-draken-public-backend:
+        condition: service_healthy
+    ports:
+      - "3000:3000"
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://localhost:3000"]
+      interval: 20s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+    restart: unless-stopped
+
+  web-app-support-management-admin-backend:
+    image: web-app-support-management-admin-backend:latest
+    pull_policy: never
+    container_name: web-app-support-management-admin-backend
+    depends_on:
+      api-service-support-management:
+        condition: service_healthy
+      wiremock:
+        condition: service_healthy
+      proxy:
+        condition: service_healthy
+    ports:
+      - "3003:3003"
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://localhost:3003/api/"]
+      interval: 20s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+    restart: unless-stopped
+
+  web-app-support-management-admin-frontend:
+    image: web-app-support-management-admin-frontend:latest
+    pull_policy: never
+    container_name: web-app-support-management-admin-frontend
+    depends_on:
+      web-app-support-management-admin-backend:
+        condition: service_healthy
+    ports:
+      - "3002:3002"
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://localhost:3002 || true"]
+      interval: 20s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+    restart: unless-stopped
+
+  web-app-fake-sso-idp:
+    image: web-app-fake-sso-idp:latest
+    pull_policy: never
+    container_name: web-app-fake-sso-idp
+    ports:
+      - "7001:7000"
+    volumes:
+      - ./config/frontend/.env-web-app-fake-sso-idp:/app/.env.production.local
+    restart: unless-stopped
+    networks:
+      - default
+
+  # simple nginx reverse-proxy for local dev routing
+  proxy:
+    image: nginx:stable-alpine
+    container_name: supportdraken_proxy
+    ports:
+      - "8888:8080"
+    volumes:
+      - ./config/nginx/proxy.conf:/etc/nginx/conf.d/proxy.conf:ro
+    extra_hosts:
+      # Map host.docker.internal to the host gateway so nginx can reach host services on Linux
+      - "host.docker.internal:host-gateway"
+    depends_on:
+      - api-service-case-data
+      - api-service-eventlog
+      - api-service-access-mapper
+      - api-service-message-exchange
+      - api-service-case-status
+      - api-service-messaging-settings
+      - api-service-messaging
+      - api-service-notes
+      - api-service-party
+      - api-service-relations
+      - api-service-support-management
+      - api-service-templating
+      - wiremock
+    networks:
+      default:
+        aliases:
+          - proxy
+    healthcheck:
+      test: ["CMD-SHELL", "test -f /var/run/nginx.pid"]
+      interval: 5s
+      timeout: 3s
+      retries: 12
+
+volumes:
+  supportdraken_data:
+    name: supportdraken_data

@@ -1,0 +1,21 @@
+{
+  "personId": "be5f6a7b-c18c-4d55-5e6f-4a5b6c7d8e9f",
+  "givenname": "Eva",
+  "lastname": "Eriksson",
+  "gender": "F",
+  "civilStatus": "M",
+  "nrDate": "2020-05-05",
+  "classified": null,
+  "protectedNR": null,
+  "addresses": [
+    {
+      "status": "active",
+      "nrDate": "2020-05-05T00:00:00Z",
+      "address": "Fifth St 5",
+      "postalCode": "55555",
+      "city": "Sundsvall",
+      "country": "SE",
+      "addressType": "home"
+    }
+  ]
+}

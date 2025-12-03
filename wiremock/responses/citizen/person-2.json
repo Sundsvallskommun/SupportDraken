@@ -1,0 +1,21 @@
+{
+  "personId": "8b2f3c4d-9e5f-4a22-8b3c-1d2e3f4a5b6c",
+  "givenname": "Bob",
+  "lastname": "Berg",
+  "gender": "M",
+  "civilStatus": "M",
+  "nrDate": "2020-02-02",
+  "classified": null,
+  "protectedNR": null,
+  "addresses": [
+    {
+      "status": "active",
+      "nrDate": "2020-02-02T00:00:00Z",
+      "address": "Second St 2",
+      "postalCode": "22222",
+      "city": "Sundsvall",
+      "country": "SE",
+      "addressType": "home"
+    }
+  ]
+}

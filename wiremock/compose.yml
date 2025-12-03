@@ -1,0 +1,13 @@
+services:
+  wiremock:
+    image: wiremock/wiremock:3.6.0
+    container_name: wiremock
+    ports:
+      - "9000:8080"
+    volumes:
+      - ./mappings:/home/wiremock/mappings:rw
+      - ./responses:/home/wiremock/__files:rw
+    command:
+      - "--verbose"
+      - "--global-response-templating"
+    restart: unless-stopped

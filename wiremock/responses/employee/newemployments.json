@@ -1,0 +1,57 @@
+[
+  {
+    "personId": "8b2f3c4d-9e5f-4a22-8b3c-1d2e3f4a5b6c",
+    "personNumber": "19700101-0002",
+    "isClassified": false,
+    "givenname": "Jane",
+    "middlename": null,
+    "lastname": "Doe",
+    "accounts": [
+      {
+        "domain": "AD",
+        "loginname": "jadoe",
+        "companyId": 1001,
+        "emailAddress": "jane.doe@example.com"
+      }
+    ],
+    "referenceNumbers": [
+      {
+        "referenceNumber": "REF-200",
+        "companyId": 1001
+      }
+    ],
+    "employments": [
+      {
+        "companyId": 1001,
+        "startDate": "2024-06-01T00:00:00Z",
+        "endDate": null,
+        "employmentType": 1,
+        "title": "Analyst",
+        "managerCode": "M002",
+        "orgId": 20,
+        "orgName": "Business",
+        "topOrgId": 1,
+        "topOrgName": "HQ",
+        "benefitGroupId": null,
+        "formOfEmploymentId": "FTE",
+        "isManual": false,
+        "paTeam": null,
+        "isMainEmployment": true,
+        "isManager": false,
+        "manager": {
+          "personId": "9c3f4d5e-af6a-4b33-7c4d-2e3f4a5b6c7d",
+          "givenname": "Megan",
+          "middlename": null,
+          "lastname": "Manager",
+          "loginname": "mmanager",
+          "emailAddress": "megan.manager@example.com",
+          "referenceNumber": "MGR-2"
+        },
+        "aid": null,
+        "empRowId": "row-2",
+        "eventType": "NewEmployment",
+        "eventInfo": "Company"
+      }
+    ]
+  }
+]

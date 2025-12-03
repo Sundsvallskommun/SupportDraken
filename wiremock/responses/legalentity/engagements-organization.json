@@ -1,0 +1,20 @@
+{
+  "engagements": [
+    {
+      "name": "Subsidiary AB",
+      "identity": { "code": "5590005678", "type": "ORGANIZATION_NUMBER" },
+      "relations": [
+        { "description": "Innehav", "code": "OWNERSHIP", "type": "BENEFICIAL" },
+        { "description": "Styrelserepresentant", "code": "BOARD", "type": "GOVERNANCE" }
+      ],
+      "source": "Mock"
+    },
+    {
+      "name": "Partner AB",
+      "identity": { "code": "5590009999", "type": "ORGANIZATION_NUMBER" },
+      "relations": [ { "description": "Samarbete", "code": "PARTNER", "type": "PARTNERSHIP" } ],
+      "source": "Mock"
+    }
+  ],
+  "beneficialOwnershipMarking": 1
+}

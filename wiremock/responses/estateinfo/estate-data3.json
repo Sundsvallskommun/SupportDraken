@@ -1,0 +1,143 @@
+{
+  "designation": "Test 3",
+  "objectidentifier": "2f3c098e-fa60-4beb-82e1-680e332b62a3",
+  "totalArea": 1337,
+  "totalAreaWater": 0,
+  "totalAreaLand": 1337,
+  "ownerChanges": [
+    {
+      "objectidentifier": "00000000-0000-0000-0000-000000000000",
+      "acquisition": [
+        {
+          "objectidentifier": "00000000-0000-0000-0000-000000000000",
+          "enrollmentDay": "1922-03-06",
+          "fileNumber": "",
+          "decision": "Beviljad",
+          "share": "1/1",
+          "acquisitionDay": "1905-11-18",
+          "acquisitionType": "Köp",
+          "registeredOwnership": "00000000-0000-0000-0000-000000000000"
+        }
+      ],
+      "purchasePrice": {},
+      "transfer": []
+    },
+    {
+      "objectidentifier": "00000000-0000-0000-0000-000000000000",
+      "acquisition": [
+        {
+          "objectidentifier": "00000000-0000-0000-0000-000000000000",
+          "enrollmentDay": "2012-08-13",
+          "fileNumber": "",
+          "decision": "Beviljad",
+          "share": "1/1",
+          "acquisitionDay": "2012-08-02",
+          "acquisitionType": "Fusion",
+          "registeredOwnership": "00000000-0000-0000-0000-000000000000"
+        }
+      ],
+      "purchasePrice": {},
+      "transfer": [
+        {
+          "objectidentifier": "00000000-0000-0000-0000-000000000000",
+          "share": "1/1",
+          "registeredOwnership": "00000000-0000-0000-0000-000000000000"
+        }
+      ]
+    },
+    {
+      "objectidentifier": "00000000-0000-0000-0000-000000000000",
+      "acquisition": [
+        {
+          "objectidentifier": "00000000-0000-0000-0000-000000000000",
+          "fileNumber": "",
+          "decision": "Beviljad",
+          "share": "1/1",
+          "acquisitionDay": "1987-11-04",
+          "acquisitionType": "Upplåtelse av tomträtt",
+          "registeredOwnership": "00000000-0000-0000-0000-000000000000"
+        }
+      ],
+      "purchasePrice": {},
+      "transfer": []
+    }
+  ],
+  "ownership": [
+    {
+      "type": "Lagfart",
+      "objectidentifier": "00000000-0000-0000-0000-000000000000",
+      "enrollmentDay": "1922-03-06",
+      "decision": "Beviljad",
+      "share": "1/1",
+      "diaryNumber": [
+        "22/23"
+      ],
+      "versionValidFrom": "2013-05-22T22:57:35.065+02:00",
+      "owner": {
+        "idnumber": "000000-0000",
+        "name": "TEST AB",
+        "coAddress": "",
+        "address": "",
+        "postalCode": "00000",
+        "city": "SUNDSVALL"
+      }
+    },
+    {
+      "type": "Tomträttsinnehav",
+      "objectidentifier": "00000000-0000-0000-0000-000000000000",
+      "enrollmentDay": "2012-08-13",
+      "decision": "Beviljad",
+      "share": "1/1",
+      "diaryNumber": [
+        "12/13723"
+      ],
+      "versionValidFrom": "2013-05-22T22:57:35.065+02:00",
+      "owner": {
+        "idnumber": "000000-0000",
+        "name": "TEST AB",
+        "coAddress": "",
+        "address": "Testgatan 1",
+        "postalCode": "00000",
+        "city": "SUNDSVALL"
+      }
+    }
+  ],
+  "mortage": [],
+  "previousOwnership": [
+    {
+      "type": "Tomträttsinnehav",
+      "objectidentifier": "00000000-0000-0000-0000-000000000000",
+      "enrollmentDay": "",
+      "decision": "Beviljad",
+      "share": "0/1",
+      "diaryNumber": [
+        "07/24222"
+      ],
+      "versionValidFrom": "2013-05-22T22:57:35.065+02:00",
+      "owner": {
+        "idnumber": "00000-00000",
+        "name": "TEST AB"
+      }
+    }
+  ],
+  "actions": [
+    {
+      "actionType1": "fastighetsreglering",
+      "actionType2": "",
+      "fileDesignation": "00000-00000",
+      "actionDate": "19950317",
+      "objectidentifier": "00000000-0000-0000-0000-000000000000",
+      "littera": "",
+      "runningNumber": 2
+    },
+    {
+      "actionType1": "avstyckning",
+      "actionType2": "fastighetsreglering",
+      "fileDesignation": "00000-00000",
+      "actionDate": "19870327",
+      "objectidentifier": "00000000-0000-0000-0000-000000000000",
+      "littera": "",
+      "runningNumber": 1
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+spring:
+  datasource:
+    url: jdbc:mariadb://mariadb:3306/eventlog
+    username: eventlog
+    password: eventlog
+  jpa:
+    hibernate:
+      ddl-auto: validate
+  flyway:
+    enabled: true

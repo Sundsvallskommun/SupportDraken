@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+set -e
+
+SERVICE="parkingpermit"
+BASE_URL="http://localhost:9000/$SERVICE"
+MUNICIPALITY_ID="2281"
+
+NAMESPACE="internal"
+ERRAND_ID="12345"
+PROCESS_INSTANCE_ID="mock-process-12345"
+
+# Shared helpers
+source "$(dirname "$0")/../_helpers.sh"
+init_report
+
+# Start a process
+run_test "StartProcess" POST "$BASE_URL/$MUNICIPALITY_ID/$NAMESPACE/process/start/$ERRAND_ID" "processId"
+
+# Update a process
+run_test "UpdateProcess" POST "$BASE_URL/$MUNICIPALITY_ID/$NAMESPACE/process/update/$PROCESS_INSTANCE_ID"
+
+print_summary_and_exit

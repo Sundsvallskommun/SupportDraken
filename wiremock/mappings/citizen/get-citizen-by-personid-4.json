@@ -1,0 +1,13 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPath": "/api/v3/citizen/2281/ad4f5e6f-b07b-4c44-6d5e-3f4a5b6c7d8e"
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "bodyFileName": "citizen/person-4.json"
+  }
+}

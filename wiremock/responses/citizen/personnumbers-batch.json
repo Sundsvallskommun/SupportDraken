@@ -1,0 +1,12 @@
+[
+    {
+        "personId": "7a1f2b3c-8d4e-4f11-9a2b-0c1d2e3f4a5b",
+        "personNumber": "19700101-0001",
+        "success": true
+    },
+    {
+        "personId": "8b2f3c4d-9e5f-4a22-8b3c-1d2e3f4a5b6c",
+        "personNumber": "19700101-0002",
+        "success": true
+    }
+]

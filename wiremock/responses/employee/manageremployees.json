@@ -1,0 +1,12 @@
+[
+  {
+    "personId": "9c3f4d5e-af6a-4b33-7c4d-2e3f4a5b6c7d",
+    "hireDate": "2020-01-15T09:00:00Z",
+    "retireDate": null
+  },
+  {
+    "personId": "ad4f5e6f-b07b-4c44-6d5e-3f4a5b6c7d8e",
+    "hireDate": "2021-03-10T09:00:00Z",
+    "retireDate": null
+  }
+]

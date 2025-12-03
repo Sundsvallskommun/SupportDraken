@@ -1,0 +1,7 @@
+{
+  "type": "https://example.com/problem/not-found",
+  "title": "Not Found",
+  "status": 404,
+  "detail": "No accounts found for the specified personId.",
+  "instance": "/api/v2/employee/{municipalityId}/employed/{personId}/accounts"
+}

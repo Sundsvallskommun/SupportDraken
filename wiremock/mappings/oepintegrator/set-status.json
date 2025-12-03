@@ -1,0 +1,11 @@
+{
+  "request": {
+    "method": "PUT",
+    "urlPathPattern": "/oepintegrator/[^/]+/[^/]+/cases/[^/]+/status"
+  },
+  "response": {
+    "status": 200,
+    "headers": { "Content-Type": "application/json" },
+    "jsonBody": {}
+  }
+}

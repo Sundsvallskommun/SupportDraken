@@ -1,0 +1,70 @@
+spring:
+  datasource:
+    url: jdbc:mariadb://mariadb:3306/messaging
+    username: messaging
+    password: messaging
+  jpa:
+    hibernate:
+    ddl-auto: validate
+  flyway:
+    enabled: true
+
+messaging:
+  defaults:
+    sms:
+      name: Sender
+    email:
+      name: Longer Sender
+      address: longer.sender@somehost.com
+    digital-mail:
+      municipality-id: someMunicipalityId
+      subject: someSubject
+      support-info:
+        text: someInfoText
+        email-address: someone@something.com
+        phone-number: somePhoneNumber
+        url: someUrl
+
+integration:
+  sms-sender:
+    base-url: http://wiremock:8080/sms-sender/
+    token-url: http://wiremock:8080/token
+    client-id: ignored
+    client-secret: ignored
+  email-sender:
+    base-url: http://wiremock:8080/email-sender/
+    token-url: http://wiremock:8080/token
+    client-id: ignored
+    client-secret: ignored
+  snailmail-sender:
+    base-url: http://wiremock:8080/snailmail-sender/
+    token-url: http://wiremock:8080/token
+    client-id: ignored
+    client-secret: ignored
+  oep-integrator:
+    base-url: http://wiremock:8080/oepintegrator/
+    token-url: http://wiremock:8080/token
+    client-id: ignored
+    client-secret: ignored
+  digital-mail-sender:
+    base-url: http://wiremock:8080/digital-mail-sender/
+    token-url: http://wiremock:8080/token
+    client-id: ignored
+    client-secret: ignored
+  slack:
+    base-url: http://wiremock:8080/slack/
+  contact-settings:
+    base-url: http://wiremock:8080/contact-settings/
+    token-url: http://wiremock:8080/token
+    client-id: ignored
+    client-secret: ignored
+  party:
+    base-url: http://api-service-party:8080/
+    token-url: http://wiremock:8080/token
+    client-id: ignored
+    client-secret: ignored
+  citizen:
+    base-url: http://wiremock:8080/citizen
+    token-url: http://wiremock:8080/token
+    client-id: ignored
+    client-secret: ignored

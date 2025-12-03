@@ -1,0 +1,13 @@
+{
+	"request": {
+		"method": "GET",
+		"urlPathPattern": "/activedirectory/[^/]+/search/[^/]+$"
+	},
+	"response": {
+		"status": 200,
+		"headers": {
+			"Content-Type": "application/json"
+		},
+		"bodyFileName": "activedirectory/search-domain-response.json"
+	}
+}

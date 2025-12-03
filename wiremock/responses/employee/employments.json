@@ -1,0 +1,55 @@
+[
+  {
+    "personId": "7a1f2b3c-8d4e-4f11-9a2b-0c1d2e3f4a5b",
+    "personNumber": "19700101-0001",
+    "isClassified": false,
+    "givenname": "John",
+    "middlename": null,
+    "lastname": "Doe",
+    "accounts": [
+      {
+        "domain": "AD",
+        "loginname": "jdoe",
+        "companyId": 1001,
+        "emailAddress": "john.doe@example.com"
+      }
+    ],
+    "referenceNumbers": [
+      {
+        "referenceNumber": "REF-100",
+        "companyId": 1001
+      }
+    ],
+    "employments": [
+      {
+        "companyId": 1001,
+        "startDate": "2023-01-01T00:00:00Z",
+        "endDate": null,
+        "employmentType": 1,
+        "title": "Engineer",
+        "managerCode": "M001",
+        "orgId": 10,
+        "orgName": "Engineering",
+        "topOrgId": 1,
+        "topOrgName": "HQ",
+        "benefitGroupId": null,
+        "formOfEmploymentId": "FTE",
+        "isManual": false,
+        "paTeam": null,
+        "isMainEmployment": true,
+        "isManager": false,
+        "manager": {
+          "personId": "9c3f4d5e-af6a-4b33-7c4d-2e3f4a5b6c7d",
+          "givenname": "Mary",
+          "middlename": null,
+          "lastname": "Manager",
+          "loginname": "mmgr",
+          "emailAddress": "mary.manager@example.com",
+          "referenceNumber": "MGR-1"
+        },
+        "aid": null,
+        "empRowId": "row-1"
+      }
+    ]
+  }
+]

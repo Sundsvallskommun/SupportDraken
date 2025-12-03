@@ -1,0 +1,12 @@
+{
+  "priority": 1,
+  "request": {
+    "method": "GET",
+    "urlPathPattern": "/api/v2/employee/[^/]+/employed/00000000-0000-0000-0000-000000000000/accounts"
+  },
+  "response": {
+    "status": 404,
+    "headers": { "Content-Type": "application/json" },
+    "bodyFileName": "employee/problem-accounts-404.json"
+  }
+}
