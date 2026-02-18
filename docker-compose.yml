@@ -3,7 +3,7 @@ services:
     build:
       context: .
       dockerfile: builder/Dockerfile
-    profiles: ["build"]
+    profiles: [ "build" ]
     privileged: true
     volumes:
       - ./config:/config
@@ -22,7 +22,7 @@ services:
       - "--verbose"
       - "--global-response-templating"
     healthcheck:
-      test: ["CMD", "wget", "-q", "http://localhost:8080/__admin" ]
+      test: [ "CMD", "wget", "-q", "http://localhost:8080/__admin" ]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -35,15 +35,13 @@ services:
       MARIADB_ROOT_PASSWORD: root
       TZ: Europe/Stockholm
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-uroot", "-proot"]
+      test: [ "CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-uroot", "-proot" ]
       interval: 5s
       timeout: 3s
       retries: 30
     volumes:
       - supportdraken_data:/var/lib/mysql
       - ./config/db/db-init.sql:/docker-entrypoint-initdb.d/01-init.sql:ro
-    ports:
-      - "3306:3306"
     restart: unless-stopped
 
   api-service-case-data:
@@ -59,7 +57,7 @@ services:
     volumes:
       - ./config/backend/application-case-data.yml:/app/config/application-default.yml
     healthcheck:
-      test: ["CMD", "wget", "-q", "http://localhost:8080/actuator/health"]
+      test: [ "CMD", "wget", "-q", "http://localhost:8080/actuator/health" ]
       interval: 20s
       timeout: 15s
       retries: 5
@@ -78,7 +76,7 @@ services:
     volumes:
       - ./config/backend/application-eventlog.yml:/app/config/application-default.yml
     healthcheck:
-      test: ["CMD", "wget", "-q", "http://localhost:8080/actuator/health"]
+      test: [ "CMD", "wget", "-q", "http://localhost:8080/actuator/health" ]
       interval: 20s
       timeout: 15s
       retries: 5
@@ -97,7 +95,7 @@ services:
     volumes:
       - ./config/backend/application-access-mapper.yml:/app/config/application-default.yml
     healthcheck:
-      test: ["CMD", "wget", "-q", "http://localhost:8080/actuator/health"]
+      test: [ "CMD", "wget", "-q", "http://localhost:8080/actuator/health" ]
       interval: 20s
       timeout: 15s
       retries: 5
@@ -116,7 +114,7 @@ services:
     volumes:
       - ./config/backend/application-message-exchange.yml:/app/config/application-default.yml
     healthcheck:
-      test: ["CMD", "wget", "-q", "http://localhost:8080/actuator/health"]
+      test: [ "CMD", "wget", "-q", "http://localhost:8080/actuator/health" ]
       interval: 20s
       timeout: 15s
       retries: 5
@@ -135,7 +133,7 @@ services:
     volumes:
       - ./config/backend/application-case-status.yml:/app/config/application-default.yml
     healthcheck:
-      test: ["CMD", "wget", "-q", "http://localhost:8080/actuator/health"]
+      test: [ "CMD", "wget", "-q", "http://localhost:8080/actuator/health" ]
       interval: 20s
       timeout: 15s
       retries: 5
@@ -154,7 +152,7 @@ services:
     volumes:
       - ./config/backend/application-messaging-settings.yml:/app/config/application-default.yml
     healthcheck:
-      test: ["CMD", "wget", "-q", "http://localhost:8080/actuator/health"]
+      test: [ "CMD", "wget", "-q", "http://localhost:8080/actuator/health" ]
       interval: 20s
       timeout: 15s
       retries: 5
@@ -173,12 +171,12 @@ services:
     volumes:
       - ./config/backend/application-messaging.yml:/app/config/application-default.yml
     healthcheck:
-      test: ["CMD", "wget", "-q", "http://localhost:8080/actuator/health"]
+      test: [ "CMD", "wget", "-q", "http://localhost:8080/actuator/health" ]
       interval: 20s
       timeout: 15s
       retries: 5
       start_period: 30s
-      
+
   api-service-notes:
     image: ghcr.io/sundsvallskommun/api-service-notes:latest
     container_name: api-service-notes
@@ -192,12 +190,12 @@ services:
     volumes:
       - ./config/backend/application-notes.yml:/app/config/application-default.yml
     healthcheck:
-      test: ["CMD", "wget", "-q", "http://localhost:8080/actuator/health"]
+      test: [ "CMD", "wget", "-q", "http://localhost:8080/actuator/health" ]
       interval: 20s
       timeout: 15s
       retries: 5
       start_period: 30s
-            
+
   api-service-party:
     image: ghcr.io/sundsvallskommun/api-service-party:latest
     container_name: api-service-party
@@ -211,12 +209,12 @@ services:
     volumes:
       - ./config/backend/application-party.yml:/app/config/application-default.yml
     healthcheck:
-      test: ["CMD", "wget", "-q", "http://localhost:8080/actuator/health"]
+      test: [ "CMD", "wget", "-q", "http://localhost:8080/actuator/health" ]
       interval: 20s
       timeout: 15s
       retries: 5
       start_period: 30s
-                  
+
   api-service-relations:
     image: ghcr.io/sundsvallskommun/api-service-relations:latest
     container_name: api-service-relations
@@ -230,12 +228,12 @@ services:
     volumes:
       - ./config/backend/application-relations.yml:/app/config/application-default.yml
     healthcheck:
-      test: ["CMD", "wget", "-q", "http://localhost:8080/actuator/health"]
+      test: [ "CMD", "wget", "-q", "http://localhost:8080/actuator/health" ]
       interval: 20s
       timeout: 15s
       retries: 5
       start_period: 30s
-                        
+
   api-service-support-management:
     image: ghcr.io/sundsvallskommun/api-service-support-management:latest
     container_name: api-service-support-management
@@ -249,12 +247,12 @@ services:
     volumes:
       - ./config/backend/application-support-management.yml:/app/config/application-default.yml
     healthcheck:
-      test: ["CMD", "wget", "-q", "http://localhost:8080/actuator/health"]
+      test: [ "CMD", "wget", "-q", "http://localhost:8080/actuator/health" ]
       interval: 20s
       timeout: 15s
       retries: 5
       start_period: 30s
-                               
+
   api-service-templating:
     image: ghcr.io/sundsvallskommun/api-service-templating:latest
     container_name: api-service-templating
@@ -268,7 +266,7 @@ services:
     volumes:
       - ./config/backend/application-templating.yml:/app/config/application-default.yml
     healthcheck:
-      test: ["CMD", "wget", "-q", "http://localhost:8080/actuator/health"]
+      test: [ "CMD", "wget", "-q", "http://localhost:8080/actuator/health" ]
       interval: 20s
       timeout: 15s
       retries: 5
@@ -288,29 +286,22 @@ services:
       - ./config/db/messaging_settings_mockdata.sql:/config/db/messaging_settings_mockdata.sql
       - ./config/db/support_management_mockdata.sql:/config/db/support_management_mockdata.sql
     entrypoint: >
-      bash -c "
-      echo 'Waiting for databases to be ready.' &&
+      bash -c " echo 'Waiting for databases to be ready.' &&
 
       until mariadb -h mariadb -uroot -proot messaging_settings -e 'SHOW TABLES;' | grep -q '^flyway_schema_history$'; do
         echo 'Waiting for Flyway in messaging_settings...'
         sleep 1
-      done &&
-      echo 'Importing test data into messaging_settings...' &&
-      mariadb -h mariadb -uroot -proot messaging_settings </config/db/messaging_settings_mockdata.sql &&
+      done && echo 'Importing test data into messaging_settings...' && mariadb -h mariadb -uroot -proot messaging_settings </config/db/messaging_settings_mockdata.sql &&
 
       until mariadb -h mariadb -uroot -proot eventlog -e 'SHOW TABLES;' | grep -q '^flyway_schema_history$'; do
         echo 'Waiting for Flyway in eventlog...'
         sleep 1
-      done &&
-      echo 'Importing test data into eventlog...' &&
-      mariadb -h mariadb -uroot -proot eventlog </config/db/eventlog_mockdata.sql &&
+      done && echo 'Importing test data into eventlog...' && mariadb -h mariadb -uroot -proot eventlog </config/db/eventlog_mockdata.sql &&
 
       until mariadb -h mariadb -uroot -proot support_management -e 'SHOW TABLES;' | grep -q '^flyway_schema_history$'; do
         echo 'Waiting for Flyway in support_management...'
         sleep 1
-      done &&
-      echo 'Importing test data into support_management...' &&
-      mariadb -h mariadb -uroot -proot support_management </config/db/support_management_mockdata.sql &&
+      done && echo 'Importing test data into support_management...' && mariadb -h mariadb -uroot -proot support_management </config/db/support_management_mockdata.sql &&
 
       echo 'All test data imported successfully.'"
 
@@ -328,7 +319,7 @@ services:
     ports:
       - "3001:3001"
     healthcheck:
-      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://localhost:3001/kc/health/up"]
+      test: [ "CMD", "wget", "-q", "-O", "/dev/null", "http://localhost:3001/kc/health/up" ]
       interval: 20s
       timeout: 10s
       retries: 5
@@ -345,7 +336,7 @@ services:
     ports:
       - "3000:3000"
     healthcheck:
-      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://localhost:3000"]
+      test: [ "CMD", "wget", "-q", "-O", "/dev/null", "http://localhost:3000" ]
       interval: 20s
       timeout: 10s
       retries: 5
@@ -366,7 +357,7 @@ services:
     ports:
       - "3003:3003"
     healthcheck:
-      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://localhost:3003/api/"]
+      test: [ "CMD", "wget", "-q", "-O", "/dev/null", "http://localhost:3003/api/" ]
       interval: 20s
       timeout: 10s
       retries: 5
@@ -383,7 +374,7 @@ services:
     ports:
       - "3002:3002"
     healthcheck:
-      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://localhost:3002 || true"]
+      test: [ "CMD-SHELL", "wget -q -O /dev/null http://localhost:3002 || true" ]
       interval: 20s
       timeout: 10s
       retries: 5
@@ -432,10 +423,34 @@ services:
         aliases:
           - proxy
     healthcheck:
-      test: ["CMD-SHELL", "test -f /var/run/nginx.pid"]
+      test: [ "CMD-SHELL", "test -f /var/run/nginx.pid" ]
       interval: 5s
       timeout: 3s
       retries: 12
+
+  # Public-facing nginx proxy for domain routing
+  public-proxy:
+    image: nginx:stable-alpine
+    container_name: supportdraken_public_proxy
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./config/nginx/public-proxy.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./config/nginx/certs:/etc/nginx/certs:ro
+    depends_on:
+      web-app-draken-public-frontend:
+        condition: service_healthy
+      web-app-support-management-admin-frontend:
+        condition: service_healthy
+    healthcheck:
+      test: [ "CMD-SHELL", "test -f /var/run/nginx.pid" ]
+      interval: 5s
+      timeout: 3s
+      retries: 12
+    networks:
+      - default
+    restart: unless-stopped
 
 volumes:
   supportdraken_data:
